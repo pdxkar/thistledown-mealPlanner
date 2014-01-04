@@ -1,0 +1,191 @@
+@import
+	url("http://fonts.googleapis.com/css?family=Raleway:400,700,900,800");
+
+#booksFooterLogo {
+	height: 50px;
+	display: inline;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#aboutProjectLogo {
+	height: 100px;
+	width: 300px;
+	text-align: center;
+}
+
+
+.navBarLink {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 50px;
+	display:block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.thumbnail {
+	/* 	width: 151px; */
+	/* 	height: 140px; */
+	
+}
+
+.browseHomeCover {
+	display: inline;
+}
+
+#companyFooterLogo {
+	height: 49px;
+	width: 49px;
+}
+
+.tags {
+	/* 	width: auto 75px; */
+	/* 	display: block; */
+	/* 	text-align: center; */
+	/* 	padding: 2px 4px; */
+	/* 	font-size: 16px; */
+	/* 	font-weight: bold; */
+	/* 	line-height: 14px; */
+	/* 	color: #FFFFFF; */
+	/* 	vertical-align: baseline; */
+	/* 	white-space: nowrap; */
+	/* 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); */
+	/* /* 	background-color: #659D32; */
+	/* 		background-color: grey; */
+	/* 	padding-top: 5px; */
+	/* 	padding-bottom: 5px; */
+	/* 	padding-left: 9px; */
+	/* 	padding-right: 9px; */
+	/* 	-webkit-border-radius: 9px; */
+	/* 	-moz-border-radius: 9px; */
+	/* 	border-radius: 9px; */
+	/* 	margin-bottom: 5px; */
+	/* 	margin-right: 5px; */
+	/* 	-webkit-transition: all 0.2s; */
+	/* 	-moz-transition: all 0.2s; */
+	/* 	-o-transition: all 0.2s; */
+	/* 	transition: all 0.2s; */
+	/* 	background-size:auto; */
+	background-color: pink;
+	border-radius: 40px;
+	-moz-border-radius: 40px;
+	-webkit-border-radius: 40px;
+	white-space: pre-wrap;
+	text-align: center;
+	padding: 2px;
+	padding-left: 12px;
+	padding-right: 12px;
+	display: inline-block;
+	white-space: normal;
+}
+
+.tagName {
+	display: table-row;
+}
+
+.animated {
+	-webkit-animation-fill-mode: both;
+	-moz-animation-fill-mode: both;
+	-ms-animation-fill-mode: both;
+	-o-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-duration: 2s;
+	-moz-animation-duration: 2s;
+	-ms-animation-duration: 2s;
+	-o-animation-duration: 2s;
+	animation-duration: 2s;
+}
+
+.animated.hinge {
+	-webkit-animation-duration: 2s;
+	-moz-animation-duration: 2s;
+	-ms-animation-duration: 2s;
+	-o-animation-duration: 2s;
+	animation-duration: 2s;
+}
+
+@
+-webkit-keyframes fadeIn { 0% {
+	opacity: 0;
+}
+
+100%
+{
+opacity
+
+
+:
+
+ 
+
+1;
+}
+}
+@
+-moz-keyframes fadeIn { 0% {
+	opacity: 0;
+}
+
+100%
+{
+opacity
+
+
+:
+
+ 
+
+1;
+}
+}
+@
+-o-keyframes fadeIn { 0% {
+	opacity: 0;
+}
+
+100%
+{
+opacity
+
+
+:
+
+ 
+
+1;
+}
+}
+@
+keyframes fadeIn { 0% {
+	opacity: 0;
+}
+
+100%
+{
+opacity
+
+
+:
+
+ 
+
+1;
+}
+}
+.fadeIn {
+	-webkit-animation-name: fadeIn;
+	-moz-animation-name: fadeIn;
+	-o-animation-name: fadeIn;
+	animation-name: fadeIn;
+}
+
+#aboutProjectLogo {
+	text-align: :center;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+

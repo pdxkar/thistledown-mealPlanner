@@ -1,0 +1,173 @@
+{
+	"title":"Book object JSON schema",
+	"description":"This schema defines a book object. A book contains lists of tags, authors, and physicalbooks, and physicalbook contains a list of media.",
+	"type":"object",
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"required":true,
+	"properties":{
+		"authorList": {
+			"description":"List of Authors for this book",
+			"type":"array",
+			"required":true,
+			"items":
+				{
+					"description":"Author object",
+					"type":"object",
+					"required":false,
+					"properties":{
+						"authorId": {
+							"type":"number",
+							"required":true
+						},
+						"description": {
+							"type":"string",
+							"required":true
+						},
+						"firstName": {
+							"type":"string",
+							"required":true
+						},
+						"lastName": {
+							"type":"string",
+							"required":true
+						}
+					}
+				}
+			
+
+		},
+		"bookTagList": {
+			"description":"List of tags for this book",
+			"type":"array",
+			"required":true,
+			"items":
+				{
+					"description":"Tag object",
+					"type":"object",
+					"required":false,
+					"properties":{
+						"tagId": {
+							"type":"number",
+							"required":true
+						},
+						"tagName": {
+							"type":"string",
+							"required":true
+						}
+					}
+				}
+			
+
+		},
+		"id": {
+			"description":"Book ID",
+			"type":"number",
+			"required":true
+		},
+		"imageUrl": {
+			"description":"Path to the image",
+			"type":"string",
+			"required":true
+		},
+		"isbn13": {
+			"description":"ISBN-13 of the book",
+			"type":"string",
+			"required":true
+		},
+		"isbn10": {
+			"description":"ISBN-10 of the book",
+			"type":"string",
+			"required":true
+		},
+		"name": {
+			"description":"Title of the book",
+			"type":"string",
+			"required":true
+		},
+		"physicalBookList": {
+			"description":"List of copies of this book",
+			"type":"array",
+			"required":true,
+			"items":
+				{
+					"description":"PhysicalBook object",
+					"type":"object",
+					"required":false,
+					"properties":{
+						"location": {
+							"description":"Location of the physical copy",
+							"type":"string",
+							"required":true
+						},
+						"mediaList": {
+							"description":"List of Media for this physical copy",
+							"type":"array",
+							"required":true,
+							"items":
+								{
+									"description":"Media object",
+									"type":"object",
+									"required":false,
+									"properties":{
+										"mediaDescription": {
+											"description":"Description of Media",
+											"type":"string",
+											"required":true
+										},
+										"mediaType": {
+											"description":"Media object",
+											"type":"string",
+											"required":false
+										},
+										"physicalMediaId": {
+											"description":"Media ID",
+											"type":"number",
+											"required":true
+										},
+										"status": {
+											"description":"Status of the Media: checkedout or available",
+											"type":"string",
+											"required":true
+										}
+									}
+								}
+							
+
+						},
+						"owner": {
+							"description":"Owner of the physical book copy",
+							"type":"string",
+							"required":true
+						},
+						"physicalBookId": {
+							"description":"ID of the PhysicalBook",
+							"type":"number",
+							"required":true
+						},
+						"status": {
+							"description":"Status of the physical book copy: checkedout or available",
+							"type":"string",
+							"required":true
+						}
+					}
+				}
+			
+
+		},
+		"publishYear": {
+			"description":"Year the book was published",
+			"type":"number",
+			"required":true
+		},
+		"publisher": {
+			"description":"Publisher of the book",
+			"type":"string",
+			"required":true
+		},
+		"snippet": {
+			"description":"Blurb for the book",
+			"type":"string",
+			"required":true
+		}
+	}
+}

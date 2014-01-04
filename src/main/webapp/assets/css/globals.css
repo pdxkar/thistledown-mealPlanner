@@ -1,0 +1,179 @@
+@import
+	url("http://fonts.googleapis.com/css?family=Raleway:400,700,900,800");
+
+@import url("http://fonts.googleapis.com/css?family=Scada:700");
+
+.dasLink {
+	height: 180px;
+}
+
+html,body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+
+
+#backToList {
+	display: block;
+}
+
+.smallerText {
+	font-size: medium;
+}
+
+#bottomBooksCover {
+text-align: center;
+}
+
+.bookCover {
+	margin: auto;
+}
+
+td {
+	font-family: sans-serif;
+}
+
+#browseHeader {
+	margin-top: 0px;
+}
+
+#container {
+	min-height: 100%;
+	position: relative;
+}
+
+#header {
+	padding: 10px;
+	height: 30px;
+}
+
+#body {
+	padding: 10px;
+	padding-top: 45px;
+	padding-bottom: 60px; /* Height of the footer */
+}
+
+#footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+	background: #6cf;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#copyRight {
+	text-align: center;
+	font-family: sans-serif;
+	font-weight: 400;
+}
+
+ul {
+	text-align: center;
+}
+
+#browsePageAuthors {
+	text-align: left;
+}
+
+.browseBookDetail {
+	color: black;
+	font-size: small;
+}
+
+#aboutBooksInfo,.aboutBooksTechnology {
+	text-align: left;
+}
+
+.browseBookTitle {
+	font-family: sans-serif;
+	font-weight: 700;
+	font-size: 15px;
+	color: black;
+}
+
+th {
+	font-family: sans-serif;
+	font-weight: 700;
+	font-size: 20px;
+	color: black;
+}
+
+#browseHomeTable .isbnLink:hover {
+	cursor: pointer;
+}
+
+#makers,#informationTitle {
+	text-align: center;
+}
+
+#makers {
+	padding-bottom: 10px;
+}
+
+#homeHeaderLink {
+	font-size: 30px;
+	font-weight: 800;
+	margin-top: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.footerNavLinks,.navLinks {
+	font-weight: 600;
+}
+
+#informationTitle,.makers {
+	font-size: large;
+}
+
+/* #detailsCover, #detailsInfo{ */
+/* 	display: inline; */
+/* } */
+h4,h3,h2 {
+	text-align: center;
+}
+
+#bottomBooksAmount{
+	text-align: center;
+}
+
+.homeLink{
+margin-left: auto;
+    margin-right: auto;
+}
+
+.footerLinks{
+	text-align: center;
+}
+
+/* .booksFootHomeLink, .booksAboutLink,.booksAboutFootLink */
+/* { */
+/* 	display:block; */
+/* 	margin-left: auto; */
+/* 	margin-right: auto; */
+/* } */
+
+.publisher
+{
+	text-align: center;
+}
+
+.bordered{
+padding: 5px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.bordered:hover {
+background-color: #e4e4e4;
+
+}
+
+.bordered:hover > h4{
+font-size: x-large;
+}

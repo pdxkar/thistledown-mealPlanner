@@ -1,0 +1,40 @@
+{
+	"id": 2,
+    "imageUrl": "",
+    "name": "",
+    "snippet": "",
+    "publisher": "",
+    "isbn13": "",
+    "isbn10": "",
+    "publishYear": 2012,
+    "authorList": [
+        {
+             "authorId": 2,
+             "firstName": "",
+             "lastName": "",
+             "description": ""
+        }
+    ],
+    "bookTagList": [
+        {
+            "tagId": 1,
+            "tagName": ""
+        }
+    ],
+    "physicalBookList": [
+        {
+            "physicalBookId": 1,
+            "location": "",
+            "status": "",
+            "owner": "",
+            "mediaList": [
+                {
+                    "mediaType": "",
+                    "mediaDescription": "",
+                    "physicalMediaId": 1,
+                    "status": ""
+               }
+            ]
+        }
+    ]
+}

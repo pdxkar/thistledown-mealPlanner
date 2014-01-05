@@ -53,26 +53,6 @@
     	<constructor-arg ref="dataSource" />
 	</bean>
 
-	<bean id="jdbcAuthorDao" class="com.books.dao.JdbcAuthorDao">
-		<property name="dataSource" ref="dataSource" />
-	</bean> 
-
-	<bean id="jdbcBookDao" class="com.books.dao.JdbcBookDao">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
-	<bean id="jdbcMediaDao" class="com.books.dao.JdbcMediaDao">
-		<property name="dataSource" ref="dataSource" />
-	</bean>  
-	
-	<bean id="jdbcTagDao" class="com.books.dao.JdbcTagDao">
-		<property name="dataSource" ref="dataSource" />
-	</bean>    	    		  	    
-	
-	<bean id="jdbcPhysicalBookDao" class="com.books.dao.JdbcPhysicalBookDao">
-		<property name="dataSource" ref="dataSource" />
-	</bean>   
-	
 	<bean id="jdbcComponentDao" class="com.books.dao.JdbcComponentDao">
 	<property name="dataSource" ref="dataSource" />
 	</bean> 

@@ -2,7 +2,6 @@ package com.books.dao;
 
 import java.util.List;
 
-import com.books.model.Book;
 import com.books.model.Component;
 
 /*

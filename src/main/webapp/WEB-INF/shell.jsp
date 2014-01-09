@@ -25,10 +25,10 @@ var __appContext__ = '<%=getServletContext().getContextPath()%>';
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular-resource.min.js"></script>
 <script src="<%=_appContext_%>/assets/js/require.js"></script>
-<script src="<%=_appContext_%>/assets/js/services.js"></script>
-<script src="<%=_appContext_%>/assets/js/tagServices.js"></script>
-<script src="<%=_appContext_%>/assets/js/bookDetailService.js"></script>
-<script src="<%=_appContext_%>/assets/js/componentService.js"></script>
+<script src="<%=_appContext_%>/assets/js/services.js"></script> <!-- Need this line to make ALL pages work!  -->
+<script src="<%=_appContext_%>/assets/js/tagServices.js"></script> 
+<script src="<%=_appContext_%>/assets/js/bookDetailService.js"></script> <!-- Need this line to make ALL pages work!  -->
+<script src="<%=_appContext_%>/assets/js/componentService.js"></script> <!-- Need this line to make ALL pages work!  -->
 <script src="<%=_appContext_%>/assets/js/global.js"></script>
 <script src="<%=_appContext_%>/assets/js/app.js"></script>
 <script src="<%=_appContext_%>/assets/js/controllers.js"></script>

@@ -1,6 +1,7 @@
 /**
  * Loads the page when the href link is hit
  */
+
 myApp.config(['$routeProvider',	'$locationProvider',
 		function($routeProvider, $locationProvider) {
 			$routeProvider.when('/', {

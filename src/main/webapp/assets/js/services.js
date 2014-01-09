@@ -1,6 +1,8 @@
 'use strict';
 /**
  * Retrieves the book json object
+ * 
+ * !!If this is commented out, then the guts of the components page doesn't load components either (the page itself will load though)
  */
 angular.module('booksServices', [ 'ngResource' ]).factory('Books',
 		function($resource) {

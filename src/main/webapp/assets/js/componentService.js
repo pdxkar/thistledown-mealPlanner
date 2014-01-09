@@ -16,5 +16,5 @@ angular.module('componentServices', [ 'ngResource' ]).factory('Components',
 					method : 'GET',
 					isArray : true
 				}
-			});
+			});console.log(__appContext__);
 		});

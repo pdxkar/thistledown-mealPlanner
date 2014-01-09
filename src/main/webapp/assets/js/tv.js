@@ -1,4 +1,4 @@
-function Tv() {
+/*function Tv() {
     var _currentChannel = "BBC 1",
         _on = false,
         _currentVolume = 50;
@@ -58,4 +58,4 @@ function Tv() {
         volume : _volume,
         isOn : function(){ return _on; }
     };
-};
+};*/

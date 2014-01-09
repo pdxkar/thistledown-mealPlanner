@@ -1,6 +1,8 @@
 'use strict';
 /**
  * Retrieves the book json object
+ * 
+ * !!this service seems to be necessary for loading the components page
  */
 angular.module('bookDetailServices', [ 'ngResource' ]).factory('BookDetail',
 		function($resource) {

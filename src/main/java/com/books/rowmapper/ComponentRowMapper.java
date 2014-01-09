@@ -2,6 +2,7 @@ package com.books.rowmapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import org.springframework.jdbc.core.RowMapper;
 
 import com.books.model.Component;

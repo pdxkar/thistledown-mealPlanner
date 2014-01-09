@@ -4,6 +4,9 @@
 /**
  * Defines "Component" as what is returned by /data/components
  * Retrieves the component json object
+ * 
+ * Weird, but if the below is commented out, botht the guts of the components page AND
+ *  the guts of the books page won't load 
  */
 angular.module('componentServices', [ 'ngResource' ]).factory('Components',
 		function($resource) {
@@ -13,5 +16,5 @@ angular.module('componentServices', [ 'ngResource' ]).factory('Components',
 					method : 'GET',
 					isArray : true
 				}
-			});
+			});console.log(__appContext__);
 		});

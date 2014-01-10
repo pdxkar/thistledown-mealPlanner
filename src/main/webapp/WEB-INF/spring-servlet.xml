@@ -39,13 +39,11 @@
 		class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-<!-- This (should) work with the postgres DB -->   
+<!-- This works with the postgres DB -->   
 
  		<property name="driverClassName" value="org.postgresql.Driver"/>
-<!--         <property name="url" value="jdbc:postgresql://192.168.0.228:5432/books"/>  -->
-<!--         <property name="url" value="jdbc:postgresql://localhost:5432/books"/>  -->
-         <property name="url" value="jdbc:postgresql://kay-PC:5432/books"/>  
-<!--         <property name="url" value="jdbc:postgresql://67.208.104.22:5432/books"/>  -->
+<!--    <property name="url" value="jdbc:postgresql://localhost:5432/books"/>  -->  <!-- This points to the laptop's DB (localhost) -->
+        <property name="url" value="jdbc:postgresql://192.168.0.23:5432/books"/>  <!-- This points to the laptop's DB -->
        
 		<property name="username" value="postgres"/>
         <property name="password" value="postgres"/>

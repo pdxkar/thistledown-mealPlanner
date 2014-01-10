@@ -2,11 +2,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 						http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>books</groupId>
-	<artifactId>books</artifactId>
+	<groupId>mealPlanner</groupId>
+	<artifactId>mealPlanner</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>books</name>
+	<name>mealPlanner</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<org.springframework.version>3.2.4.RELEASE</org.springframework.version>
@@ -312,6 +312,6 @@
                 </configuration>
             </plugin>
 		</plugins>
-		<finalName>books</finalName>
+		<finalName>mealPlanner</finalName>
 	</build>
 </project>

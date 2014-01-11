@@ -134,7 +134,7 @@ var __appContext__ = '<%=getServletContext().getContextPath()%>';
 				</div>
 			</nav>
 			<div id="copyRight">
-				<strong>Copyright ©2014 Thistledown Consulting, Portland OR</strong>
+				<strong>Copyright ©2014 Thistledown Software, Portland OR</strong>
 			</div>
 		</div>
 	</div>

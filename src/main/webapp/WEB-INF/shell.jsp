@@ -14,7 +14,7 @@
 <script type="text/javascript">
 var __appContext__ = '<%=getServletContext().getContextPath()%>';
 </script>
-<title>Books</title>
+<title>Meal Planner</title>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

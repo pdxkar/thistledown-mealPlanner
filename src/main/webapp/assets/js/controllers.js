@@ -25,7 +25,7 @@ myApp.controller('ComponentListCtrl', [ '$scope', 'Components',
 /*angular
 .module('ddApp', ['lvl.directives.dragdrop']) // register the directive with your app module
 */
-myApp.controller('ddController', ['$scope' , function($scope){ // function referenced by the drop target
+/*myApp.controller('ddController', ['$scope' , function($scope){ // function referenced by the drop target
 	$scope.dropped = function(dragEl, dropEl) {
 		//this is application logic, for the demo we just want to color the grid squares
 		//the directive provides a native dom object, wrap with jqlite
@@ -49,7 +49,7 @@ myApp.controller('ddController', ['$scope' , function($scope){ // function refer
 		}
 	}
 }]);
-
+*/
 
 
 

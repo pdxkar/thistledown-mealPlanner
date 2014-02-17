@@ -38,11 +38,6 @@
 						class="row-fluid clickable" 
 						ng-repeat="component in components">
 			
-<!-- 				<div id="bookRow_{{$index + 1}}"
-						class="row-fluid clickable" 
-						ng-repeat="component in components | orderBy:orderByTitle:direction"
-						onclick="location.href='{{_appContext_}}/{{book.isbn13}}';"> -->
-						
 					<!-- left column  -->
 					<div class="span4">
 						<div class="bookRow">
@@ -57,20 +52,11 @@
 
 									<div class="span6 " class="bookDetails">
 										<div id="authorStyle">
-										
-											<!-- Book Title Section  -->
-<!-- 											<span class="browseBookTitle" id="bookRow_{{$index + 1}}_browseBookTitle_{{$index+1}}">
-												<strong>{{component.name}}</strong>
-											</span><br>  -->
-											
+																				
 											<span>
 												<strong>{{component.itemname}}</strong>
 											</span><br> 
 											
-											<!-- Author List Section -->
-<!-- 											<span ng-repeat="author in book.authorList | orderBy:orderByAuthorLastName"  
-												  id="browseBookAuthor_{{$index+1}}">{{author.lastName}}, {author.firstName}}<br>
-											</span> -->
 										</div>
 									</div>
 									
@@ -82,24 +68,11 @@
 					<!-- Middle column -->
 	 				<div class="span4 publisher"  id="browseBookPublisher_{{$index+1}}">{{component.basequantity}}</div> 
 					
-					<!--Right column  -->
-<!-- 					<div class="span4">
-						<ul ng-repeat="tag in book.bookTagList">
-						<li  class="tags btn-primary" id="browseBookTag{{$index+1}}"> {{tag.tagName}}</li>
-						</ul>
-					</div> -->
-					
 					<!-- Right column -->
 	 				<div class="span4 publisher"  id="browseBookPublisher_{{$index+1}}">{{component.calories}}</div> 
 
-				</div><!-- end of <div id="bookRow_{{$index + 1}}" on row 37 -->
-<!-- 				<div class="row-fluid">
-					<div class="span12">
-						<div id="bottomBooksAmount"><strong>No. of Titles : {{books.length}}</strong>
-						</div>
-					</div>
+				</div>
 
-				</div> -->
 			</div>
 		</div>
 	</div>

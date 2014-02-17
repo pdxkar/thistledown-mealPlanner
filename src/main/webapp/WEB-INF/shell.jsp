@@ -16,14 +16,10 @@ var __appContext__ = '<%=getServletContext().getContextPath()%>';
 </script>
 <title>Meal Planner</title>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script
-	src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular-resource.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular-resource.min.js"></script>
 <script src="<%=_appContext_%>/assets/js/require.js"></script>
 <script src="<%=_appContext_%>/assets/js/services.js"></script> <!-- Need this line to make ALL pages work!  -->
 <script src="<%=_appContext_%>/assets/js/tagServices.js"></script> 
@@ -32,6 +28,10 @@ var __appContext__ = '<%=getServletContext().getContextPath()%>';
 <script src="<%=_appContext_%>/assets/js/global.js"></script>
 <script src="<%=_appContext_%>/assets/js/app.js"></script>
 <script src="<%=_appContext_%>/assets/js/controllers.js"></script>
+<!-- These three are for the drag and drop functionality -->
+<script src="<%=_appContext_%>/assets/js/angular.js"></script>
+<script src="<%=_appContext_%>/assets/js/lvl-drag-drop.js"></script>
+<script src="<%=_appContext_%>/assets/js/lvl-uuid.js"></script>
 
 <link rel="stylesheet"
 	href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
@@ -78,21 +78,8 @@ var __appContext__ = '<%=getServletContext().getContextPath()%>';
 
 				<div class="navbar-header navbar-centered">
 
-					<!-- 					<button type="button" class="navbar-toggle" data-toggle="collapse" -->
-					<!-- 						data-target=".navbar-ex1-collapse"> -->
-					<!-- 						<span class="sr-only">Toggle navigation</span> <span -->
-					<!-- 							class="icon-bar"></span> <span class="icon-bar"></span> <span -->
-					<!-- 							class="icon-bar"></span> -->
-					<!-- 					</button> -->
-
 				</div>
-				<!-- 				Collect the nav links, forms, and other content for toggling -->
-				<!-- 				<div class="collapse navbar-collapse navbar-ex1-collapse navbar-centered"> -->
-				<!-- 					<ul class="nav navbar-nav"> -->
-				<%-- 						<li><a href="<%=_appContext_%>"  id="homeLink"><strong>BOOKS</strong></a></li> --%>
-				<%-- 						<li id="homeAboutLink"><a href="<%=_appContext_%>/about"><strong>About Books</strong></a></li> --%>
-				<!-- 					</ul> -->
-				<!-- 				</div> -->
+
 			</nav>
 		</div>
 

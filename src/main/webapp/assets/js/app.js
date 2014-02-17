@@ -18,7 +18,11 @@ myApp.config([
 						controller : 'ComponentListCtrl'
 					//When the url is "/mealPlanner/about" then redirect to the about page		
 					}).when(__appContext__ + '/about', {
-						templateUrl : __appContext__ + '/assets/partials/aboutUs.html'
+						templateUrl : __appContext__ + '/assets/partials/aboutUs.html'		
+					//When the url is "/mealPlanner/dragAndDrop" then redirect to the dragAndDrop page		
+					}).when(__appContext__ + '/dragAndDrop', {
+						templateUrl : __appContext__ + '/assets/partials/index.html',
+						controller : 'ddController'
 					//if the url is "mealPlanner/*" then redirect to the "/browseComponents.html" page	
 					}).otherwise({
 				redirectTo : '/component'

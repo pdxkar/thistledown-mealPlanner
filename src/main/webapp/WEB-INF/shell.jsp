@@ -43,7 +43,8 @@ var __appContext__ = '<%=getServletContext().getContextPath()%>';
 <link rel="stylesheet" href="<%=_appContext_%>/assets/css/images.css">
 <link rel="stylesheet" href="<%=_appContext_%>/assets/css/bootstrap.css">
 <link rel="stylesheet" href="<%=_appContext_%>/assets/css/bootstrap-RowFluidAddonn.css">
-
+<!-- This is for the dragAndDrop functionality -->
+<link rel="stylesheet" href="<%=_appContext_%>/assets/css/dragAndDrop.css">
 </head>
 <body>
 	<div id="container">

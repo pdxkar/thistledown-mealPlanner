@@ -1,4 +1,4 @@
-var myApp = angular.module('booksbenchproject', [ 'booksServices', 'booksTagsServices', 'bookDetailServices', 'componentServices'], 
+var myApp = angular.module('booksbenchproject', [ 'booksServices', 'booksTagsServices', 'bookDetailServices', 'componentServices', 'ddApp'], 
 		function ($routeProvider, $locationProvider, $httpProvider) {
 
     var interceptor = ['$rootScope', '$q', function (scope, $q) {

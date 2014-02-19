@@ -29,9 +29,12 @@ var __appContext__ = '<%=getServletContext().getContextPath()%>';
 <script src="<%=_appContext_%>/assets/js/app.js"></script>
 <script src="<%=_appContext_%>/assets/js/controllers.js"></script>
 <!-- These three are for the drag and drop functionality -->
-<script src="<%=_appContext_%>/assets/js/angular.js"></script>
+ <script src="<%=_appContext_%>/assets/js/angular.js"></script>
 <script src="<%=_appContext_%>/assets/js/lvl-drag-drop.js"></script>
-<script src="<%=_appContext_%>/assets/js/lvl-uuid.js"></script>
+<script src="<%=_appContext_%>/assets/js/lvl-uuid.js"></script>  
+<%-- <script src="mealPlanner/assets/js/angular.js"></script>
+<script src="mealPlanner/assets/js/lvl-drag-drop.js"></script>
+<script src="mealPlanner/assets/js/lvl-uuid.js"></script>  --%>
 
 <link rel="stylesheet"
 	href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
@@ -44,7 +47,8 @@ var __appContext__ = '<%=getServletContext().getContextPath()%>';
 <link rel="stylesheet" href="<%=_appContext_%>/assets/css/bootstrap.css">
 <link rel="stylesheet" href="<%=_appContext_%>/assets/css/bootstrap-RowFluidAddonn.css">
 <!-- This is for the dragAndDrop functionality -->
-<link rel="stylesheet" href="<%=_appContext_%>/assets/css/dragAndDrop.css">
+  <link rel="stylesheet" href="<%=_appContext_%>/assets/css/dragAndDrop.css">  
+<%-- <link rel="stylesheet" href="mealPlanner/assets/css/dragAndDrop.css"> --%>
 </head>
 <body>
 	<div id="container">

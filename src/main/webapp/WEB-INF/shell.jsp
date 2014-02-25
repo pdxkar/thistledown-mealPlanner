@@ -29,9 +29,13 @@ var __appContext__ = '<%=getServletContext().getContextPath()%>';
 <script src="<%=_appContext_%>/assets/js/app.js"></script>
 <script src="<%=_appContext_%>/assets/js/controllers.js"></script>
 <!-- These three are for the drag and drop functionality -->
- <script src="<%=_appContext_%>/assets/js/angular.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.js"></script> -->
+<%-- <script src="<%=_appContext_%>/assets/js/angular.js"></script> 
 <script src="<%=_appContext_%>/assets/js/lvl-drag-drop.js"></script>
-<script src="<%=_appContext_%>/assets/js/lvl-uuid.js"></script>  
+<script src="<%=_appContext_%>/assets/js/lvl-uuid.js"></script>  --%> 
+<script src="C:/Users/kay/workspace/mealPlanner/src/main/webapp/assets/js/angular.js"></script>
+<script src="C:/Users/kay/workspace/mealPlanner/src/main/webapp/assets/js/lvl-drag-drop.js"></script>
+<script src="C:/Users/kay/workspace/mealPlanner/src/main/webapp/assets/js/lvl-uuid.js"></script>
 <%-- <script src="mealPlanner/assets/js/angular.js"></script>
 <script src="mealPlanner/assets/js/lvl-drag-drop.js"></script>
 <script src="mealPlanner/assets/js/lvl-uuid.js"></script>  --%>
@@ -48,6 +52,7 @@ var __appContext__ = '<%=getServletContext().getContextPath()%>';
 <link rel="stylesheet" href="<%=_appContext_%>/assets/css/bootstrap-RowFluidAddonn.css">
 <!-- This is for the dragAndDrop functionality -->
   <link rel="stylesheet" href="<%=_appContext_%>/assets/css/dragAndDrop.css">  
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 <%-- <link rel="stylesheet" href="mealPlanner/assets/css/dragAndDrop.css"> --%>
 </head>
 <body>

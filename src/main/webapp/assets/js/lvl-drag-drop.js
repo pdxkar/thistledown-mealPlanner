@@ -1,3 +1,4 @@
+jQuery.event.props.push('dataTransfer');
 var module = angular.module("lvl.directives.dragdrop", ['lvl.services']);
 
 module.directive('lvlDraggable', ['$rootScope', 'uuid', function($rootScope, uuid) {

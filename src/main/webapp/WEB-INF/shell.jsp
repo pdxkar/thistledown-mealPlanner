@@ -16,10 +16,18 @@ var __appContext__ = '<%=getServletContext().getContextPath()%>';
 </script>
 <title>Meal Planner</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+
+
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular-resource.min.js"></script>
+
+ <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>-->
+ <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-resource.min.js"></script> -->
+
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular-resource.min.js"></script> 
+
 <script src="<%=_appContext_%>/assets/js/require.js"></script>
 <script src="<%=_appContext_%>/assets/js/services.js"></script> <!-- Need this line to make ALL pages work!  -->
 <script src="<%=_appContext_%>/assets/js/tagServices.js"></script> 
@@ -30,12 +38,12 @@ var __appContext__ = '<%=getServletContext().getContextPath()%>';
 <script src="<%=_appContext_%>/assets/js/controllers.js"></script>
 <!-- These three are for the drag and drop functionality -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.js"></script> -->
-<%-- <script src="<%=_appContext_%>/assets/js/angular.js"></script> 
+ <script src="<%=_appContext_%>/assets/js/angular.js"></script> 
 <script src="<%=_appContext_%>/assets/js/lvl-drag-drop.js"></script>
-<script src="<%=_appContext_%>/assets/js/lvl-uuid.js"></script>  --%> 
-<script src="C:/Users/kay/workspace/mealPlanner/src/main/webapp/assets/js/angular.js"></script>
+<script src="<%=_appContext_%>/assets/js/lvl-uuid.js"></script>   
+<!-- <script src="C:/Users/kay/workspace/mealPlanner/src/main/webapp/assets/js/angular.js"></script>
 <script src="C:/Users/kay/workspace/mealPlanner/src/main/webapp/assets/js/lvl-drag-drop.js"></script>
-<script src="C:/Users/kay/workspace/mealPlanner/src/main/webapp/assets/js/lvl-uuid.js"></script>
+<script src="C:/Users/kay/workspace/mealPlanner/src/main/webapp/assets/js/lvl-uuid.js"></script> -->
 <%-- <script src="mealPlanner/assets/js/angular.js"></script>
 <script src="mealPlanner/assets/js/lvl-drag-drop.js"></script>
 <script src="mealPlanner/assets/js/lvl-uuid.js"></script>  --%>

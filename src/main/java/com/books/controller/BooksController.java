@@ -169,7 +169,7 @@ public class BooksController {
 		return componentDao;
 	}
 	
-		
+	//call this service with URL http://localhost:8080/mealPlanner/data/components?componentid=1	
 	@RequestMapping(value = "/components", method = RequestMethod.GET, headers = { "Accept=application/json" })
 	public @ResponseBody
 	List<Component> getListOfComponents() {

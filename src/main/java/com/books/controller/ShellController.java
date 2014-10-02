@@ -13,13 +13,15 @@ public class ShellController {
 	public String getPathedShell() {
 		System.out.println("ShellController GET /**/*");
 		//shell = webapp/WEB-INF/shell.jsp
-		return "shell";
+		//return "shell";
+		return "index";
 	}
 	
 	@RequestMapping("/")
 	public String getRootShell() {
 		System.out.println("ShellController GET /");
 		//shell = webapp/WEB-INF/shell.jsp
-		return "shell";
+		//return "shell";
+		return "index";
 	}
 }

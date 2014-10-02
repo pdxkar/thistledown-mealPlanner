@@ -1,4 +1,15 @@
-<div class="panel panel-primary">
+<!-- Experiment -->
+
+<p>Stuff in Database:</p>
+
+<div>
+        <li ng-repeat="component in components"> {{ component.itemname }} </li>
+</div>
+
+
+
+
+<!-- <div class="panel panel-primary">
 	<div class="panel-heading">
 		<h3 class="panel-title"><strong>No. of Components : {{components.length}}</strong></h3>
 	</div>
@@ -8,7 +19,7 @@
 				<div class="span4">
 					<h4 class="text-center">
 					
-					<!-- left column  -->
+					left column 
 						<strong>Item Name</strong>
 						<button id="titleSorter" ng-click="sort('name')">
 							<span id="sorterForTitle"
@@ -19,7 +30,7 @@
 				<div class="span4">
 					<h4 class="text-center">
 					
-					<!-- Middle column  -->
+					Middle column 
 						<strong>Quantity</strong>
 						<button id="publisherSorter" ng-click="sort('publisher')">
 							<span id="sorterForPublisher"
@@ -29,7 +40,7 @@
 				</div>
 				<div class="span4">
 				
-				<!-- right column  -->
+				right column 
 					<h4 class="text-center"><strong>Calories</strong></h4>
 				</div>
 			</div>
@@ -38,12 +49,12 @@
 						class="row-fluid clickable" 
 						ng-repeat="component in components">
 			
-					<!-- left column  -->
+					left column 
 					<div class="span4">
 						<div class="bookRow">
 							<div class="span12">
 								<div class="bookRow">
-								<!-- Book Cover Section -->
+								Book Cover Section
 									<div class="span6 bookCover"  id="bookRow_{{$index + 1}}_browseBookCover_{{$index+1}}">
 										<img ng-src="{{_appContext_}}/{{component.image}}"
 											class="browseHomeCover thumbnail"/>
@@ -65,10 +76,10 @@
 						</div>
 					</div>
 					
-					<!-- Middle column -->
+					Middle column
 	 				<div class="span4 publisher"  id="browseBookPublisher_{{$index+1}}">{{component.basequantity}}</div> 
 					
-					<!-- Right column -->
+					Right column
 	 				<div class="span4 publisher"  id="browseBookPublisher_{{$index+1}}">{{component.calories}}</div> 
 
 				</div>
@@ -76,4 +87,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->

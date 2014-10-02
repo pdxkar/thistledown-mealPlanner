@@ -42,9 +42,9 @@
 <!-- This works with the postgres DB -->   
 
  		<property name="driverClassName" value="org.postgresql.Driver"/>
-<!--     <property name="url" value="jdbc:postgresql://localhost:5432/books"/>  -->   <!-- This points to the laptop's DB (localhost) -->
-<!--    <property name="url" value="jdbc:postgresql://192.168.0.23:5432/books"/> -->  <!-- Catalyst: This points to the laptop's DB when the laptop is at Catalyst -->
-         <property name="url" value="jdbc:postgresql://192.168.1.7:5432/books"/>   <!-- Beaverton: This points to the laptop's DB when the laptop is at the Beaverton house -->
+     <property name="url" value="jdbc:postgresql://localhost:5432/books"/>   <!-- This points to the laptop's DB (localhost) -->
+ <!--   <property name="url" value="jdbc:postgresql://192.168.0.51:5432/books"/> -->   <!-- Catalyst: This points to the laptop's DB when the laptop is at Catalyst -->
+ <!--        <property name="url" value="jdbc:postgresql://192.168.1.7:5432/books"/>  -->  <!-- Beaverton: This points to the laptop's DB when the laptop is at the Beaverton house -->
  <!--        <property name="url" value="jdbc:postgresql://192.168.1.103:5432/books"/> -->  <!-- Sellwood: This points to the laptop's DB when the laptop is at the Sellwood house -->
         
  		<property name="username" value="postgres"/>

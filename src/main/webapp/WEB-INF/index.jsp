@@ -1,4 +1,45 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+#div1 {width:350px;height:120px;padding:10px;border:1px solid #aaaaaa;}
+</style>
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text/html", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text/html");
+    ev.target.appendChild(document.getElementById(data));
+}
+</script>
+</head>
+<body>
+
+<p>Drag the monster images into the rectangle:</p>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+<img id="drag1" src="../assets/img/monster.gif" draggable="true" ondragstart="drag(event)" width="87" height="99">
+<img id="drag2" src="../assets/img/monster2.jpg" draggable="true" ondragstart="drag(event)" width="99" height="99">
+
+<p id="drag3" draggable="true" ondragstart="drag(event)">This is a draggable paragraph.</p>
+
+<!-- 			<td><input type="text" readonly="true" id="componentcalories" size="10" /></td> -->
+
+
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <title></title>
@@ -64,4 +105,4 @@
 		</tr>
 	</table>
 </body>
-</html>
+</html> -->

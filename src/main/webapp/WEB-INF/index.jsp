@@ -12,6 +12,7 @@
 		// put more code here in case you are concerned about browsers that do not provide XMLHttpRequest object directly
 		xmlhttp = new XMLHttpRequest();
 	}
+	
 	function getdetails() {
 	
 		var componentid = document.getElementById("componentid");
@@ -35,6 +36,8 @@
 							if (det[i].itemid == componentid.value) {
 								componentname.value = det[i].itemname;
 								componentcalories.value = det[i].calories;
+								componentNameFromList.value = det[i].itemname;
+								componentCaloriesFromList.value = det[i].calories;
 								break;
 							}
 					}  
@@ -78,13 +81,21 @@ function drop(ev) {
 
 		<tr>
 			<td>Component calories :</td>
-			<td><input type="text" readonly="true" id="componentcalories"
-				size="10" /></td>
+			<td><input type="text" readonly="true" id="componentcalories" size="10" /></td>
 		</tr>
+		
+
+
+<tr>
+	<td>
+	<input type="text" readonly="true" id="componentNameFromList" size="20" />
+ 	<input type="text" readonly="true" id="componentCaloriesFromList" size="20" /> 
+	</td>
+</tr>
 	</table>
 	
-	<!-- this is beginning of the drag and drop exercise (html part) -->
 	
+	<!-- This is the beginning of the drag and drop exercise HTML -->	
 	<p>Drag the monster images into the rectangle:</p>
 
 <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
@@ -92,8 +103,11 @@ function drop(ev) {
 <img id="drag1" src="../assets/img/monster.gif" draggable="true" ondragstart="drag(event)" width="87" height="99">
 <img id="drag2" src="../assets/img/monster2.jpg" draggable="true" ondragstart="drag(event)" width="99" height="99">
 
-<p id="drag3" draggable="true" ondragstart="drag(event)">This is a draggable paragraph.</p>
+ <p id="drag3" draggable="true" ondragstart="drag(event)">This is a draggable paragraph.</p> 
+<p id="drag3" draggable="true" ondragstart="drag(event)"><input type="text" readonly="true" id="componentnameList" size="20" /></p>
+  <input type ="text" readonly="true" id="componentNameFromList" draggable="true" ondragstart="drag(event)" size="20" value="xxx" /> 
+ <div id="componentNameFromList" size="20" draggable="true" ondragstart="drag(event)">xxx</div>
+<!-- This is the end of the drag and drop exercise HTML -->	
 
-<!-- 			<td><input type="text" readonly="true" id="componentcalories" size="10" /></td> -->
 </body>
-</html> 
+</html>

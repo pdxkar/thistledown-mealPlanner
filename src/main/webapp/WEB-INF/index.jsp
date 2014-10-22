@@ -1,6 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
 <!-- <style>
 #div1 {width:350px;height:120px;padding:10px;border:1px solid #aaaaaa;}
 </style> -->
@@ -12,8 +13,17 @@
 #boxA { background-color: #6633FF; width:75px; height:75px;  }
 #boxB { background-color: #FF6699; width:150px; height:150px; }
 
+/* This is the beginning of Dharmendra's click and move example ()  */
+
+select {
+	width:200px;
+	height:100px;
+}
+
+/* This is the end of Dharmendra's click and move example (css)  */
+
 </style>
-<title></title>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script language="javascript">
 	var xmlhttp;
@@ -45,7 +55,16 @@
 							if (det[i].itemid == componentid.value) {
 							//	componentname.value = det[i].itemname;
 								componentcalories.value = det[i].calories;
-								componentNameFromList.value = det[i].itemname;
+							//	componentNameFromList.value = det[i].itemname;
+							
+							/* 
+							function setText(id,newvalue) {
+  							var s= document.getElementById(id);
+  							s.innerHTML = newvalue;
+							 */
+							var s = document.getElementById("boxC");
+							s.innerHTML = "hello";
+							
 								break;
 							}
 					}  
@@ -55,22 +74,6 @@
 			}
 		};
 	}
-	
-//This is the beginning of the W3Schools drag and drop exercise	(js part)
-/* 	function allowDrop(ev) {
-    ev.preventDefault();
-}
-
-function drag(ev) {
-    ev.dataTransfer.setData("text/html", ev.target.id);
-}
-
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text/html");
-    ev.target.appendChild(document.getElementById(data));
-} */
-//This is the end of the W3Schools drag and drop exercise
 
 //This is the beginning of TutorialsPoint draganddrop exercise (javascript)
 function dragStart(ev) {
@@ -93,6 +96,27 @@ function dragDrop(ev) {
    return false;
 }
 //This is the end of TutorialsPoint draganddrop exercise (javascript)
+
+//This is the beginning of Dharmendra's click and move example (javascript)
+
+   /*
+		@param1 - sourceid - This is the id of the multiple select box whose item has to be moved.
+		@param2 - destinationid - This is the id of the multiple select box to where the iterms should be moved.
+	*/
+	
+	//this will move selected items from source list to destination list			
+	function move_list_items(sourceid, destinationid)
+	{
+		$("#"+sourceid+"  option:selected").appendTo("#"+destinationid);
+	}
+
+	//this will move all selected items from source list to destination list
+	function move_list_items_all(sourceid, destinationid)
+	{
+		$("#"+sourceid+" option").appendTo("#"+destinationid);
+	}
+	
+//This is the end of Dharmendra's click and move example (javascript)
 	
 </script>
 </head>
@@ -115,22 +139,6 @@ function dragDrop(ev) {
 		</tr>
 	</table>
 	
-	
-	<!-- This is the beginning of the W3Schools drag and drop exercise HTML -->	
-<!-- 	<p>Drag the monster images into the rectangle:</p>
-
-<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-<br>
-<img id="drag1" src="../assets/img/monster.gif" draggable="true" ondragstart="drag(event)" width="87" height="99">
-<img id="drag2" src="../assets/img/monster2.jpg" draggable="true" ondragstart="drag(event)" width="99" height="99">
-
- <p id="drag3" draggable="true" ondragstart="drag(event)">This is a VERY Extremely draggable paragraph.</p> 
- <div id="dragme" draggable="true" ondragstart="drag(event)">
- 	<input type="text" id="componentNameFromList" />
- </div> -->
-
-<!-- This is the end of the W3Schools drag and drop exercise HTML -->
-
 <!-- This is the beginning of the tutorialsPoint drag and drop exercise -->
 
 <div>Try to move the purple box into the pink box.</div>
@@ -142,18 +150,57 @@ function dragDrop(ev) {
 
 <div id="boxC" draggable="true" 
      ondragstart="return dragStart(event)">
-   <input type="text" id="componentNameFromList" />
-</div>
+<!--    <input type="text" id="componentNameFromList" /> -->
+</div> 
 
 <div id="boxB" ondragenter="return dragEnter(event)" 
      ondrop="return dragDrop(event)" 
      ondragover="return dragOver(event)">Dustbin</div>
      
-
-     
 <!-- This is the end of the tutorialsPoint drag and drop exercise -->
 
-	
+<!-- this is the beginning of Dharmendra's click and move example (html) -->
+	<table cellpadding="5" cellspacing="5">
 
+<tbody>
+
+<tr>
+
+    <td colspan="2">
+        <select id="from_select_list" multiple="multiple" name="from_select_list"> 
+        <option value="apple">Apple</option>
+        <option value="mango">Mango</option> 
+        <option value="bannana">Bannana</option> 
+        <option value="grapes">Grapes</option> 
+        </select>
+    </td>
+    
+    <td colspan="2">
+        <select id="to_select_list" multiple="multiple" name="to_select_list"> 
+        <option value="winder">Winter</option> 
+        <option value="summer">Summer</option> 
+        <option value="rainy">Rainy</option> 
+        <option value="Spring">Spring</option> 
+        </select>
+    </td>
+
+</tr>
+
+<tr>
+
+    <td><input id="moveright" type="button" value="Move Right" onclick="move_list_items('from_select_list','to_select_list');" /></td>
+    
+    <td><input id="moverightall" type="button" value="Move Right All" onclick="move_list_items_all('from_select_list','to_select_list');" /></td>
+    
+    <td><input id="moveleft" type="button" value="Move Left" onclick="move_list_items('to_select_list','from_select_list');" /></td>
+    
+    <td><input id="moveleftall" type="button" value="Move Left All" onclick="move_list_items_all('to_select_list','from_select_list');" /></td>
+
+</tr>
+
+</tbody>
+
+</table>
+<!-- this is the end of Dharmendra's click and move example (html) -->
 </body>
 </html>

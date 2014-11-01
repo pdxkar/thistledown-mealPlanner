@@ -7,11 +7,16 @@
 </style> -->
 
 <style type="text/css">
+
+/* this is the beginning of tutorialspoint's css */
+
 #boxA, #boxB {
    float:left;padding:10px;margin:10px;-moz-user-select:none;
 }
 #boxA { background-color: #6633FF; width:75px; height:75px;  }
 #boxB { background-color: #FF6699; width:150px; height:150px; }
+
+/* this is the end of tutorialspoint's css */
 
 /* This is the beginning of Dharmendra's click and move example ()  */
 
@@ -26,6 +31,7 @@ select {
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script language="javascript">
+
 	var xmlhttp;
 	function init() {
 		// put more code here in case you are concerned about browsers that do not provide XMLHttpRequest object directly
@@ -42,32 +48,53 @@ select {
 		xmlhttp.send(null);
 		xmlhttp.onreadystatechange = function() {
 
-			var componentname = document.getElementById("componentname");
+		//	var componentname = document.getElementById("componentname");
 			var componentcalories = document.getElementById("componentcalories");
 			if (xmlhttp.readyState == 4) {
 
 				if (xmlhttp.status == 200) {
 					var det = eval("(" + xmlhttp.responseText + ")");
-					var i=0;
-					var tot = 0;
+				//	var i=0;
 					
-					for (tot=det.length; i < tot; i++) {
-							if (det[i].itemid == componentid.value) {
+					for (var i = 0; i < det.length; i++) {
+//							if (det[i].itemid == componentid.value) {
 							//	componentname.value = det[i].itemname;
 								componentcalories.value = det[i].calories;
 							//	componentNameFromList.value = det[i].itemname;
 							
-							/* 
-							function setText(id,newvalue) {
-  							var s= document.getElementById(id);
-  							s.innerHTML = newvalue;
-							 */
-							var s = document.getElementById("boxC");
-							s.innerHTML = "hello";
+  							var s = document.getElementById("boxC");
+							s.innerHTML = "hello";  
 							
-								break;
+							//dynamically create a div
+							var magicDiv = document.createElement('div');
+							magicDiv.id = "magicDiv" + i;
+							magicDiv.innerHTML = "I'm another kind of div";
+							magicDiv.draggable = "true";
+							document.body.appendChild(magicDiv);
+							
+							//magicDiv.ondragstart = "return dragStart(event)";  //<= this is not working
+/* 							function drag(event) {
+   								 alert("You dragged me");
+							} */
+							function drag(event) {
+   								 return dragStart(event);
 							}
+							
+						//	magicDiv.addEventListener("dragstart", drag); //this alerts, but doesn't drag it
+							magicDiv.addEventListener("dragstart", drag);
+							
+
+
 					}  
+					
+					for (var j = 0; j < det.length; j++) {
+					
+						var q = document.getElementById("magicDiv" + j);
+						alert("MagicDiv = " + q);
+					}
+					
+				//	magicDiv1 = document.getElementById("boxC");
+					
 					
 				} else
 					alert("Error ->" + xmlhttp.responseText); 
@@ -80,19 +107,23 @@ function dragStart(ev) {
    ev.dataTransfer.effectAllowed='move';
    ev.dataTransfer.setData("Text", ev.target.getAttribute('id'));
    ev.dataTransfer.setDragImage(ev.target,0,0);
+//   alert("dragStart " + ev.target.getAttribute('id'));
    return true;
 }
 function dragEnter(ev) {
    event.preventDefault();
+//   alert("dragEnter " );
    return true;
 }
 function dragOver(ev) {
+//	alert("dragOver " );
     return false;
 }
 function dragDrop(ev) {
    var src = ev.dataTransfer.getData("Text");
    ev.target.appendChild(document.getElementById(src));
    ev.stopPropagation();
+//   alert("dragDrop " + document.getElementById(src).id );
    return false;
 }
 //This is the end of TutorialsPoint draganddrop exercise (javascript)
@@ -124,7 +155,7 @@ function dragDrop(ev) {
 	<h1>Component Lookup</h1>
 	<table>
 		<tr>
-			<td>Enter Component ID :</td>
+			<td>Enter Componentcccc ID :</td>
 			<td><input type="text" id="componentid" size="10" /> 
 				<input type="button" value="Get Details" onclick="getdetails()" />
 		</tr>
@@ -148,9 +179,14 @@ function dragDrop(ev) {
    <p>Drag Me</p>
 </div>
 
-<div id="boxC" draggable="true" 
+ <div id="boxC" draggable="true" 
      ondragstart="return dragStart(event)">
-<!--    <input type="text" id="componentNameFromList" /> -->
+<!--   Something gets inserted here -->
+</div>  
+
+<div id="boxD" draggable="true" 
+     ondragstart="return dragStart(event)">
+     xxxx
 </div> 
 
 <div id="boxB" ondragenter="return dragEnter(event)" 
@@ -202,5 +238,9 @@ function dragDrop(ev) {
 
 </table>
 <!-- this is the end of Dharmendra's click and move example (html) -->
+<div id="wayOutDiv" draggable="true" 
+     ondragstart="return dragStart(event)">
+  <p> I'm a way-Out div! </p>
+</div>
 </body>
 </html>

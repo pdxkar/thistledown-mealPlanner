@@ -1,17 +1,25 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
 <head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
 
 <style type="text/css">
-/* #boxB {    margin-left: auto; margin-right: auto; width: 70%; background-color: #b0e0e6; -moz-user-select:none; } */
+
  #boxB { float:right; width: 50%; margin-right: 50px; background-color: #b0e0e6; -moz-user-select:none; } 
-/* #boxB { float:right;padding:10px;margin:10px;-moz-user-select:none; } */
-/* #boxB { background-color: #FF6699; width:150px; height:150px; } */
+ #runningTotalBox { float:right; width: 50%; margin-right: 50px; background-color: #666699; }
+
 </style>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script language="javascript">
+
+	var runningTotalCalories = 0;
+	var runningTotalCarbs = 0;
+	var runningTotalProtein = 0;
+	var runningTotalFiber = 0;
+	var runningTotalSugar = 0;
+	var runningTotalSodium = 0;
+	var runningTotalFat = 0;
 
 	var xmlhttp;
 	function init() {
@@ -20,8 +28,6 @@
 	}
 	
 	function getdetails() {
-	
-		/* var componentid = document.getElementById("componentid"); */
 		
 		var url = "http://localhost:8080/mealPlanner/data/components/";
 
@@ -29,22 +35,27 @@
 		xmlhttp.send(null);
 		xmlhttp.onreadystatechange = function() {
 
-		//	var componentname = document.getElementById("componentname");
-		//	var componentcalories = document.getElementById("componentcalories");
 			if (xmlhttp.readyState == 4) {
 
 				if (xmlhttp.status == 200) {
 					var det = eval("(" + xmlhttp.responseText + ")");
 					
 					for (var i = 0; i < det.length; i++) {
-//							if (det[i].itemid == componentid.value) {
-							//	componentname.value = det[i].itemname;
-							//	componentcalories.value = det[i].calories;
-							//	componentNameFromList.value = det[i].itemname;
-							
 							//dynamically create a div
 							var magicDiv = document.createElement('div');
 							magicDiv.id = "magicDiv" + i;
+							//set custom attributes to be totaled after element is draggedAndDropped
+							magicDiv.basequantity = det[i].basequantity;
+							magicDiv.baseunitofmeasure = det[i].baseunitofmeasure;
+							magicDiv.itemname = det[i].itemname; 
+							magicDiv.calories = det[i].calories;
+							magicDiv.carbs = det[i].carbs;
+							magicDiv.protein = det[i].protein;
+							magicDiv.fiber = det[i].fiber;
+							magicDiv.sugar = det[i].sugar;
+							magicDiv.sodium = det[i].sodium;
+							magicDiv.fat = det[i].fat;
+							//set innerHTML
 							magicDiv.innerHTML = det[i].basequantity
 										 + " " + det[i].baseunitofmeasure 
 										 + " " + det[i].itemname 
@@ -56,7 +67,6 @@
 										 + ", "+ det[i].sodium + "mg sodium "
 										 + ", "+ det[i].fat + "g fat ";
 							
-							//det[i].itemname
 							magicDiv.draggable = "true";
 							document.body.appendChild(magicDiv);
 
@@ -76,9 +86,6 @@
 function dragStart(ev) {
    ev.dataTransfer.effectAllowed='move';
    ev.dataTransfer.setData("Text", ev.target.getAttribute('id')); 
-   
-/*   ev.dataTransfer.setData("innerHTML", ev.target.getAttribute('innerHTML')); */
-  
    ev.dataTransfer.setDragImage(ev.target,0,0);
    return true;
 }
@@ -91,13 +98,26 @@ function dragOver(ev) {
 }
 function dragDrop(ev) {
    var src = ev.dataTransfer.getData("Text"); 
-/*    var test = ev.dataTransfer.getData("innerHTML");  */ 
+
     ev.target.appendChild(document.getElementById(src)); 
-/*    ev.target.appendChild(document.getElementById(test));    */
- 	alert("document.getElementById(src).innerHTML = " + document.getElementById(src).innerHTML); 
-/* 	alert("booze");
-	alert("document.getElementById(test).id = " + document.getElementById(test).id);
-	alert("boo"); */
+    
+    runningTotalCalories += document.getElementById(src).calories;
+    runningTotalCarbs += document.getElementById(src).carbs;
+    runningTotalProtein += document.getElementById(src).protein;
+    runningTotalFiber += document.getElementById(src).fiber;
+    runningTotalSugar += document.getElementById(src).sugar;
+    runningTotalSodium += document.getElementById(src).sodium;
+    runningTotalFat += document.getElementById(src).fat; 
+    
+	document.getElementById("runningTotalBox").innerHTML = "Totals: cal: " 
+			+ runningTotalCalories + " kCal, "
+			+ "carbs: " + runningTotalCarbs + "g, "
+			+ "protein: " + runningTotalProtein + "g, "
+			+ "fiber: " + runningTotalFiber + "g, "
+			+ "sugar: " + runningTotalSugar	+ "g, "
+			+ "sodium: " + runningTotalSodium + "mg, "
+			+ "fat: " + runningTotalFat + "g";
+    
    ev.stopPropagation();
  
    return false;
@@ -109,25 +129,15 @@ function dragDrop(ev) {
 	<h1>Component Lookup</h1>
 	<table>
 		<tr>
-			<!-- <td>Enter Componentgggg ID :</td> -->
-			<td>
-			<!-- <input type="text" id="componentid" size="10" />  -->
-				<input type="button" value="Get Everything in DB" onclick="getdetails()" />
+			<td><input type="button" value="Get Everything in DB" onclick="getdetails()" />
 		</tr>
-<!-- 		<tr>
-			<td>Component Name :</td>
-			<td><input type="text" readonly="true" id="componentname" size="20" /></td>
-		</tr>  -->
-
-<!-- 		<tr>
-			<td>Component calories :</td>
-			<td><input type="text" readonly="true" id="componentcalories" size="10" /></td>
-		</tr> -->
 	</table>
 
 <div id="boxB" ondragenter="return dragEnter(event)" 
      ondrop="return dragDrop(event)" 
      ondragover="return dragOver(event)"><b>Menu</b></div>
+     
+<div id="runningTotalBox">Totals:</div>
      
 </body>
 </html>

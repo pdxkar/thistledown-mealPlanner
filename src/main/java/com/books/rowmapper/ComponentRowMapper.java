@@ -37,6 +37,7 @@ public class ComponentRowMapper implements RowMapper<Component> {
 		component.setSugar(rs.getInt("SUGAR"));
 		component.setFat(rs.getInt("FAT"));
 		component.setImage(rs.getString("IMAGE"));
+		component.setCholesterol(rs.getInt("CHOLESTEROL"));
 	
 		return component;
 	}

@@ -6,7 +6,7 @@
 <style type="text/css">
 
  #boxB { float:right; width: 50%; margin-right: 50px; background-color: #b0e0e6; -moz-user-select:none; } 
- #runningTotalBox { float:right; width: 50%; margin-right: 50px; background-color: #666699; }
+ #runningTotalBox { float:right; width: 50%; height: 10%; margin-right: 50px; background-color: #CCFFFF; }
 
 </style>
 
@@ -20,6 +20,7 @@
 	var runningTotalSugar = 0;
 	var runningTotalSodium = 0;
 	var runningTotalFat = 0;
+	var runningTotalCholesterol = 0;
 
 	var xmlhttp;
 	function init() {
@@ -27,26 +28,45 @@
 		xmlhttp = new XMLHttpRequest();
 	}
 	
-	function getdetails() {
-		
-		var url = "http://localhost:8080/mealPlanner/data/components/";
+	function getdetails(category) {
+	
+	var url = "http://localhost:8080/mealPlanner/data/components/";
 
-		xmlhttp.open('GET', url, true);
-		xmlhttp.send(null);
-		xmlhttp.onreadystatechange = function() {
+	xmlhttp.open('GET', url, true);
+	xmlhttp.send(null);
+	xmlhttp.onreadystatechange = function() {
 
-			if (xmlhttp.readyState == 4) {
+		if (xmlhttp.readyState == 4) {
 
-				if (xmlhttp.status == 200) {
-					var det = eval("(" + xmlhttp.responseText + ")");
-					
+			if (xmlhttp.status == 200) {
+				var det = eval("(" + xmlhttp.responseText + ")");
+				
+				//clear any component list previously displayed
+				if(document.getElementById("containingDiv") != null){
+					var element = document.getElementById("containingDiv");
+   					element.parentNode.removeChild(element);
+				}
+				
+				var containingDiv = document.createElement('div');
+				containingDiv.id = "containingDiv";
+				containingDiv.style.height = "500px";
+				containingDiv.style.width = "600px";
+				containingDiv.style.border =  "1px solid #ccc";
+				containingDiv.style.overflow = "scroll";
+				
 					for (var i = 0; i < det.length; i++) {
+						if(det[i].category == category || category == 0) {
 							//dynamically create a div
 							var magicDiv = document.createElement('div');
 							magicDiv.id = "magicDiv" + i;
 							//set custom attributes to be totaled after element is draggedAndDropped
 							magicDiv.basequantity = det[i].basequantity;
-							magicDiv.baseunitofmeasure = det[i].baseunitofmeasure;
+							//blank out null values for baseunitofmeasure to make UI more readable
+							if (det[i].baseunitofmeasure){
+								magicDiv.baseunitofmeasure = det[i].baseunitofmeasure;
+							} else { 
+								magicDiv.baseunitofmeasure = ""; 
+							}
 							magicDiv.itemname = det[i].itemname; 
 							magicDiv.calories = det[i].calories;
 							magicDiv.carbs = det[i].carbs;
@@ -55,33 +75,41 @@
 							magicDiv.sugar = det[i].sugar;
 							magicDiv.sodium = det[i].sodium;
 							magicDiv.fat = det[i].fat;
+							magicDiv.cholesterol = det[i].cholesterol;
+							//alert("det[i].cholesterol = " + det[i].cholesterol);
 							//set innerHTML
-							magicDiv.innerHTML = det[i].basequantity
-										 + " " + det[i].baseunitofmeasure 
-										 + " " + det[i].itemname 
-										 + ", "+ det[i].calories + " cal "
-										 + ", "+ det[i].carbs + " g carbs "
-										 + ", "+ det[i].protein + "g protein "
-										 + ", "+ det[i].fiber + "g fiber "
-										 + ", "+ det[i].sugar + "g sugar "
-										 + ", "+ det[i].sodium + "mg sodium "
-										 + ", "+ det[i].fat + "g fat ";
+							magicDiv.innerHTML = 
+										 "<b>" + "<a style=\"color:blue; font-size:105%;\">" + magicDiv.itemname + "</a>"
+										 + ", " + magicDiv.basequantity
+										 + " " + magicDiv.baseunitofmeasure + "</b>" 
+										 + "<br />" + "&nbsp; &nbsp; &nbsp;" 
+										 + "<b>" + magicDiv.calories + " cal" + "</b>" 
+										 + "<a style=\"color: grey; font-size: 85%; font-style: italic;\">"
+										 + ", "+ magicDiv.protein + "g protein "
+										 + ", "+ magicDiv.carbs + " g carbs "
+										 + ", "+ magicDiv.fiber + "g fiber "
+										 + ", "+ magicDiv.sugar + "g sugar "
+										 + ", "+ magicDiv.fat + "g fat "
+										 + ", "+ magicDiv.cholesterol + "mg chol "
+										 + ", "+ magicDiv.sodium + "mg sodium "
+    									 + "</a>";
 							
 							magicDiv.draggable = "true";
-							document.body.appendChild(magicDiv);
+							containingDiv.appendChild(magicDiv);
+						document.body.appendChild(containingDiv);
 
-							function drag(event) {
-   								 return dragStart(event);
-							}
+						function drag(event) {
+  								 return dragStart(event);
+						}
 
-							magicDiv.addEventListener("dragstart", drag);
+						magicDiv.addEventListener("dragstart", drag);
 					}
-					
-				} else
-					alert("Error ->" + xmlhttp.responseText); 
-			}
-		};
-	}
+				}
+			} else
+				alert("Error ->" + xmlhttp.responseText); 
+		}
+	};
+}
 
 function dragStart(ev) {
    ev.dataTransfer.effectAllowed='move';
@@ -108,15 +136,17 @@ function dragDrop(ev) {
     runningTotalSugar += document.getElementById(src).sugar;
     runningTotalSodium += document.getElementById(src).sodium;
     runningTotalFat += document.getElementById(src).fat; 
+    runningTotalCholesterol += document.getElementById(src).cholesterol; 
     
-	document.getElementById("runningTotalBox").innerHTML = "Totals: cal: " 
-			+ runningTotalCalories + " kCal, "
-			+ "carbs: " + runningTotalCarbs + "g, "
-			+ "protein: " + runningTotalProtein + "g, "
-			+ "fiber: " + runningTotalFiber + "g, "
-			+ "sugar: " + runningTotalSugar	+ "g, "
-			+ "sodium: " + runningTotalSodium + "mg, "
-			+ "fat: " + runningTotalFat + "g";
+	document.getElementById("runningTotalBox").innerHTML = "Totals:  " 
+			+ "<b>" + runningTotalCalories + " kCal, "  + "</b>"
+			+ runningTotalProtein + " g protein, " 
+			+ "<b>" + runningTotalCarbs + " g carbs, " + "</b>"
+			+ runningTotalFiber + " g fiber, "
+			+ "<b>" + runningTotalSugar + " g sugar, "  + "</b>"
+ 			+ runningTotalFat + " g fat, " 
+			+ "<b>"	+ runningTotalCholesterol + " mg chol, " + "</b>"
+			+ runningTotalSodium + " mg sodium";
     
    ev.stopPropagation();
  
@@ -126,12 +156,25 @@ function dragDrop(ev) {
 </script>
 </head>
 <body onload="init()">
-	<h1>Component Lookup</h1>
-	<table>
+	<h1>Meal Planner</h1>
+ 	<table>
 		<tr>
-			<td><input type="button" value="Get Everything in DB" onclick="getdetails()" />
+		<td><input type="button" value="Show All" onclick="getdetails(0)" /></td>
+		<td><input type="button" value="Show Protein" onclick="getdetails(1)" /></td>
+		<td><input type="button" value="Show Carbs" onclick="getdetails(2)" /></td>
+		<td><input type="button" value="Show Fruit" onclick="getdetails(3)" /></td>
+		<td><input type="button" value="Show Veggies" onclick="getdetails(4)" /></td>
+		<td><input type="button" value="Show Dairy" onclick="getdetails(5)" /></td>
+		<td><input type="button" value="Show Beverages" onclick="getdetails(8)" /></td>
+		<td><input type="button" value="Show Condiments" onclick="getdetails(10)" /></td>
+		<td><input type="button" value="Show Alcohol" onclick="getdetails(9)" /></td>		
+		<td><input type="button" value="Show Meals" onclick="getdetails(6)" /></td>
+		<td><input type="button" value="Show Other" onclick="getdetails(7)" /></td>
 		</tr>
-	</table>
+	</table> 
+	
+	
+	
 
 <div id="boxB" ondragenter="return dragEnter(event)" 
      ondrop="return dragDrop(event)" 

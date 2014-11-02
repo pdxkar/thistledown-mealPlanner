@@ -5,7 +5,7 @@
 
 <style type="text/css">
 /* #boxB {    margin-left: auto; margin-right: auto; width: 70%; background-color: #b0e0e6; -moz-user-select:none; } */
- #boxB { float:right; width: 60%; margin-right: 100px; background-color: #b0e0e6; -moz-user-select:none; } 
+ #boxB { float:right; width: 50%; margin-right: 50px; background-color: #b0e0e6; -moz-user-select:none; } 
 /* #boxB { float:right;padding:10px;margin:10px;-moz-user-select:none; } */
 /* #boxB { background-color: #FF6699; width:150px; height:150px; } */
 </style>
@@ -45,8 +45,17 @@
 							//dynamically create a div
 							var magicDiv = document.createElement('div');
 							magicDiv.id = "magicDiv" + i;
-							//magicDiv.innerHTML = "I'm another kind of div";
-							magicDiv.innerHTML = det[i].itemname;
+							magicDiv.innerHTML = det[i].basequantity
+										 + " " + det[i].baseunitofmeasure 
+										 + " " + det[i].itemname 
+										 + ", "+ det[i].calories + " cal "
+										 + ", "+ det[i].carbs + " g carbs "
+										 + ", "+ det[i].protein + "g protein "
+										 + ", "+ det[i].fiber + "g fiber "
+										 + ", "+ det[i].sugar + "g sugar "
+										 + ", "+ det[i].sodium + "mg sodium "
+										 + ", "+ det[i].fat + "g fat ";
+							
 							//det[i].itemname
 							magicDiv.draggable = "true";
 							document.body.appendChild(magicDiv);
@@ -66,7 +75,10 @@
 
 function dragStart(ev) {
    ev.dataTransfer.effectAllowed='move';
-   ev.dataTransfer.setData("Text", ev.target.getAttribute('id'));
+   ev.dataTransfer.setData("Text", ev.target.getAttribute('id')); 
+   
+/*   ev.dataTransfer.setData("innerHTML", ev.target.getAttribute('innerHTML')); */
+  
    ev.dataTransfer.setDragImage(ev.target,0,0);
    return true;
 }
@@ -78,9 +90,16 @@ function dragOver(ev) {
     return false;
 }
 function dragDrop(ev) {
-   var src = ev.dataTransfer.getData("Text");
-   ev.target.appendChild(document.getElementById(src));
+   var src = ev.dataTransfer.getData("Text"); 
+/*    var test = ev.dataTransfer.getData("innerHTML");  */ 
+    ev.target.appendChild(document.getElementById(src)); 
+/*    ev.target.appendChild(document.getElementById(test));    */
+ 	alert("document.getElementById(src).innerHTML = " + document.getElementById(src).innerHTML); 
+/* 	alert("booze");
+	alert("document.getElementById(test).id = " + document.getElementById(test).id);
+	alert("boo"); */
    ev.stopPropagation();
+ 
    return false;
 }
 
@@ -108,7 +127,7 @@ function dragDrop(ev) {
 
 <div id="boxB" ondragenter="return dragEnter(event)" 
      ondrop="return dragDrop(event)" 
-     ondragover="return dragOver(event)">Menu</div>
+     ondragover="return dragOver(event)"><b>Menu</b></div>
      
 </body>
 </html>

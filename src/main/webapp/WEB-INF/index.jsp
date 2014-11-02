@@ -13,10 +13,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script language="javascript">
 
-	var quickSortHits = 0;
-	
-
-
 	var runningTotalCalories = 0;
 	var runningTotalCarbs = 0;
 	var runningTotalProtein = 0;
@@ -47,21 +43,12 @@
 				
 				//sort the array
 				var sortedDet = quickSort(det);
-		
-		//		var sortedDet = det;
 				
 				//clear any component list previously displayed
-				if(document.getElementById("containingDiv") != null){
-					var element = document.getElementById("containingDiv");
-   					element.parentNode.removeChild(element);
-				}
-				
-				var containingDiv = document.createElement('div');
-				containingDiv.id = "containingDiv";
-				containingDiv.style.height = "500px";
-				containingDiv.style.width = "600px";
-				containingDiv.style.border =  "1px solid #ccc";
-				containingDiv.style.overflow = "scroll";
+				if(document.getElementById("componentContainer").innerHTML != null){
+					var element = document.getElementById("componentContainer");
+					element.innerHTML = "";
+				} 
 				
 					for (var i = 0; i < sortedDet.length; i++) {
 						if(sortedDet[i].category == category || category == 0) {
@@ -103,9 +90,9 @@
 										 + ", "+ magicDiv.sodium + " mg sodium "
     									 + "</a>";
 							
-							magicDiv.draggable = "true";
-							containingDiv.appendChild(magicDiv);
-						document.body.appendChild(containingDiv);
+						magicDiv.draggable = "true";
+						
+						componentContainer.appendChild(magicDiv);
 
 						function drag(event) {
   								 return dragStart(event);
@@ -147,6 +134,35 @@ function dragDrop(ev) {
     runningTotalSodium += document.getElementById(src).sodium;
     runningTotalFat += document.getElementById(src).fat; 
     runningTotalCholesterol += document.getElementById(src).cholesterol; 
+    
+	document.getElementById("runningTotalBox").innerHTML = "Totals:  " 
+			+ "<b>" + runningTotalCalories + " kCal, "  + "</b>"
+			+ runningTotalProtein + " g protein, " 
+			+ "<b>" + runningTotalCarbs + " g carbs, " + "</b>"
+			+ runningTotalFiber + " g fiber, "
+			+ "<b>" + runningTotalSugar + " g sugar, "  + "</b>"
+ 			+ runningTotalFat + " g fat, " 
+			+ "<b>"	+ runningTotalCholesterol + " mg chol, " + "</b>"
+			+ runningTotalSodium + " mg sodium";
+    
+   ev.stopPropagation();
+ 
+   return false;
+}
+function dragDropBack(ev) {
+
+   var src = ev.dataTransfer.getData("Text"); 
+
+    ev.target.appendChild(document.getElementById(src)); 
+    
+    runningTotalCalories -= document.getElementById(src).calories;
+    runningTotalCarbs -= document.getElementById(src).carbs;
+    runningTotalProtein -= document.getElementById(src).protein;
+    runningTotalFiber -= document.getElementById(src).fiber;
+    runningTotalSugar -= document.getElementById(src).sugar;
+    runningTotalSodium -= document.getElementById(src).sodium;
+    runningTotalFat -= document.getElementById(src).fat; 
+    runningTotalCholesterol -= document.getElementById(src).cholesterol; 
     
 	document.getElementById("runningTotalBox").innerHTML = "Totals:  " 
 			+ "<b>" + runningTotalCalories + " kCal, "  + "</b>"
@@ -218,13 +234,16 @@ function quickSort(array){
 		</tr>
 	</table> 
 	
-	
-	
-
 <div id="boxB" ondragenter="return dragEnter(event)" 
      ondrop="return dragDrop(event)" 
      ondragover="return dragOver(event)"><b>Menu</b></div>
      
+<div id="componentContainer" ondragenter="return dragEnter(event)" 
+     ondrop="return dragDropBack(event)" 
+     ondragover="return dragOver(event)"
+     style="height:500px;width:600px;border:1px solid #ccc;overflow:scroll;">
+     </div>
+   
 <div id="runningTotalBox">Totals:</div>
      
 </body>

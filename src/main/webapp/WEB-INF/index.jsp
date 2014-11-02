@@ -13,6 +13,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script language="javascript">
 
+	var quickSortHits = 0;
+	
+
+
 	var runningTotalCalories = 0;
 	var runningTotalCarbs = 0;
 	var runningTotalProtein = 0;
@@ -41,6 +45,11 @@
 			if (xmlhttp.status == 200) {
 				var det = eval("(" + xmlhttp.responseText + ")");
 				
+				//sort the array
+				var sortedDet = quickSort(det);
+		
+		//		var sortedDet = det;
+				
 				//clear any component list previously displayed
 				if(document.getElementById("containingDiv") != null){
 					var element = document.getElementById("containingDiv");
@@ -54,29 +63,29 @@
 				containingDiv.style.border =  "1px solid #ccc";
 				containingDiv.style.overflow = "scroll";
 				
-					for (var i = 0; i < det.length; i++) {
-						if(det[i].category == category || category == 0) {
+					for (var i = 0; i < sortedDet.length; i++) {
+						if(sortedDet[i].category == category || category == 0) {
 							//dynamically create a div
 							var magicDiv = document.createElement('div');
 							magicDiv.id = "magicDiv" + i;
 							//set custom attributes to be totaled after element is draggedAndDropped
-							magicDiv.basequantity = det[i].basequantity;
+							magicDiv.basequantity = sortedDet[i].basequantity;
 							//blank out null values for baseunitofmeasure to make UI more readable
-							if (det[i].baseunitofmeasure){
-								magicDiv.baseunitofmeasure = det[i].baseunitofmeasure;
+							if (sortedDet[i].baseunitofmeasure){
+								magicDiv.baseunitofmeasure = sortedDet[i].baseunitofmeasure;
 							} else { 
 								magicDiv.baseunitofmeasure = ""; 
 							}
-							magicDiv.itemname = det[i].itemname; 
-							magicDiv.calories = det[i].calories;
-							magicDiv.carbs = det[i].carbs;
-							magicDiv.protein = det[i].protein;
-							magicDiv.fiber = det[i].fiber;
-							magicDiv.sugar = det[i].sugar;
-							magicDiv.sodium = det[i].sodium;
-							magicDiv.fat = det[i].fat;
-							magicDiv.cholesterol = det[i].cholesterol;
-							//alert("det[i].cholesterol = " + det[i].cholesterol);
+							magicDiv.itemname = sortedDet[i].itemname; 
+							magicDiv.calories = sortedDet[i].calories;
+							magicDiv.carbs = sortedDet[i].carbs;
+							magicDiv.protein = sortedDet[i].protein;
+							magicDiv.fiber = sortedDet[i].fiber;
+							magicDiv.sugar = sortedDet[i].sugar;
+							magicDiv.sodium = sortedDet[i].sodium;
+							magicDiv.fat = sortedDet[i].fat;
+							magicDiv.cholesterol = sortedDet[i].cholesterol;
+
 							//set innerHTML
 							magicDiv.innerHTML = 
 										 "<b>" + "<a style=\"color:blue; font-size:105%;\">" + magicDiv.itemname + "</a>"
@@ -85,13 +94,13 @@
 										 + "<br />" + "&nbsp; &nbsp; &nbsp;" 
 										 + "<b>" + magicDiv.calories + " cal" + "</b>" 
 										 + "<a style=\"color: grey; font-size: 85%; font-style: italic;\">"
-										 + ", "+ magicDiv.protein + "g protein "
+										 + ", "+ magicDiv.protein + " g protein "
 										 + ", "+ magicDiv.carbs + " g carbs "
-										 + ", "+ magicDiv.fiber + "g fiber "
-										 + ", "+ magicDiv.sugar + "g sugar "
-										 + ", "+ magicDiv.fat + "g fat "
-										 + ", "+ magicDiv.cholesterol + "mg chol "
-										 + ", "+ magicDiv.sodium + "mg sodium "
+										 + ", "+ magicDiv.fiber + " g fiber "
+										 + ", "+ magicDiv.sugar + " g sugar "
+										 + ", "+ magicDiv.fat + " g fat "
+										 + ", "+ magicDiv.cholesterol + " mg chol "
+										 + ", "+ magicDiv.sodium + " mg sodium "
     									 + "</a>";
 							
 							magicDiv.draggable = "true";
@@ -125,6 +134,7 @@ function dragOver(ev) {
     return false;
 }
 function dragDrop(ev) {
+
    var src = ev.dataTransfer.getData("Text"); 
 
     ev.target.appendChild(document.getElementById(src)); 
@@ -151,6 +161,41 @@ function dragDrop(ev) {
    ev.stopPropagation();
  
    return false;
+}
+
+function sortByItemName(array, itemName) {
+    return array.sort(function(a, b) {
+        var x = a[itemName]; var y = b[itemName];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+}
+
+function quickSort(array){
+
+	var lessThan = new Array();
+	var greaterThan = new Array();
+
+	var item = array.pop();
+	
+
+	for (var j = 0; j < array.length; j++) { 
+		if (array[j].itemname < item.itemname){
+			lessThan.push(array[j]);
+		} else if (array[j].itemname > item.itemname){
+			greaterThan.push(array[j]);
+		} else if (array[j].itemname = item.itemname){
+			lessThan.push(array[j]);
+		}
+	}
+	if (lessThan.length > 1){
+		lessThan = quickSort(lessThan);
+	}
+	if (greaterThan.length > 1){
+		greaterThan = quickSort(greaterThan);
+	}
+	lessThan.push(item);
+	var sortedDet = lessThan.concat(greaterThan);
+	return sortedDet;
 }
 
 </script>

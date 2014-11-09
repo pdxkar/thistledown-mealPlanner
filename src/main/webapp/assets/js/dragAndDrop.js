@@ -17,7 +17,7 @@
 		xmlhttp = new XMLHttpRequest();
 	}
 	
-	function getdetails(category) {
+	function getdetails(category, showFavorites) {
 	
 	var url = "http://localhost:8080/mealPlanner/data/components/";
 
@@ -41,7 +41,7 @@
 				
 					for (var i = 0; i < sortedDet.length; i++) {
 						//alert("sortedDet[i].favorite = " + sortedDet[i].favorite);
-						if(sortedDet[i].category == category || category == 0 || sortedDet[i].favorite === true)  {
+						if( sortedDet[i].category == category || category == 0 || (sortedDet[i].favorite === true && showFavorites === true) )  {
 							//dynamically create a div
 							var magicDiv = document.createElement('div');
 							magicDiv.id = "magicDiv" + i;

@@ -226,18 +226,18 @@ function quickSort(array){
 	<h1>Meal Planner</h1>
  	<table>
 		<tr>
-		<td><input type="button" value="Show Favorites" onclick="getdetails(11)" /></td>
-		<td><input type="button" value="Show All" onclick="getdetails(0)" /></td>
-		<td><input type="button" value="Show Protein" onclick="getdetails(1)" /></td>
-		<td><input type="button" value="Show Carbs" onclick="getdetails(2)" /></td>
-		<td><input type="button" value="Show Fruit" onclick="getdetails(3)" /></td>
-		<td><input type="button" value="Show Veggies" onclick="getdetails(4)" /></td>
-		<td><input type="button" value="Show Dairy" onclick="getdetails(5)" /></td>
-		<td><input type="button" value="Show Beverages" onclick="getdetails(8)" /></td>
-		<td><input type="button" value="Show Condiments" onclick="getdetails(10)" /></td>
-		<td><input type="button" value="Show Alcohol" onclick="getdetails(9)" /></td>		
-		<td><input type="button" value="Show Meals" onclick="getdetails(6)" /></td>
-		<td><input type="button" value="Show Other" onclick="getdetails(7)" /></td>
+		<td><input type="button" value="Show Favorites" onclick="getdetails(11, true)" /></td>
+		<td><input type="button" value="Show All" onclick="getdetails(0, false)" /></td>
+		<td><input type="button" value="Show Protein" onclick="getdetails(1, false)" /></td>
+		<td><input type="button" value="Show Carbs" onclick="getdetails(2, false)" /></td>
+		<td><input type="button" value="Show Fruit" onclick="getdetails(3, false)" /></td>
+		<td><input type="button" value="Show Veggies" onclick="getdetails(4, false)" /></td>
+		<td><input type="button" value="Show Dairy" onclick="getdetails(5, false)" /></td>
+		<td><input type="button" value="Show Beverages" onclick="getdetails(8, false)" /></td>
+		<td><input type="button" value="Show Condiments" onclick="getdetails(10, false)" /></td>
+		<td><input type="button" value="Show Alcohol" onclick="getdetails(9, false)" /></td>		
+		<td><input type="button" value="Show Meals" onclick="getdetails(6, false)" /></td>
+		<td><input type="button" value="Show Other" onclick="getdetails(7, false)" /></td>
 		</tr>
 	</table> 
 	

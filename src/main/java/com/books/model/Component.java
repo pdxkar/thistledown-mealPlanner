@@ -4,7 +4,7 @@ public class Component {
 
 	// SQL query to get all components:
 	public static final String GET_ALL_COMPONENTS = "SELECT itemid, itemname, category, basequantity, baseunitofmeasure, "
-			+ " calories, carbs, protein, fiber, sugar, sodium, fat, image, cholesterol"
+			+ " calories, carbs, protein, fiber, sugar, sodium, fat, image, cholesterol, isfavorite"
 			+ " FROM basecomponent";
 	
 	//private variables
@@ -22,6 +22,7 @@ public class Component {
 	private float fat;
 	private String image;
 	private float cholesterol;
+	private boolean isFavorite;
 	
 	//empty constructor
 	public Component(){
@@ -139,5 +140,13 @@ public class Component {
 
 	public void setCholesterol(float cholesterol) {
 		this.cholesterol = cholesterol;
+	}
+
+	public boolean isFavorite() {
+		return isFavorite;
+	}
+
+	public void setIsFavorite(boolean isFavorite) {
+		this.isFavorite = isFavorite;
 	}
 }

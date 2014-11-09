@@ -26,12 +26,10 @@
   <mvc:annotation-driven />
   
   <!-- resources exclusions from servlet mapping -->
-<!-- <mvc:resources mapping="/css/**" location="../assets/css/" />
-<mvc:resources mapping="/images/**" location="../assets/images/" /> -->
-<!-- <mvc:resources mapping="/js/**" location="../assets/js/" /> -->
-   	<mvc:resources mapping="/assets/**" location="../assets/" order="-1"/>    
+<!-- The below does not seem to work or be necessary, but I'm keeping it here just in case. -->
+<!--    	<mvc:resources mapping="/assets/**" location="../assets/" order="-1"/>     -->
  		
-	<!-- Ref: http://static.springsource.org/spring/docs/2.5.x/reference/metadata.html#metadata-annotations-required -->
+<!-- Ref: http://static.springsource.org/spring/docs/2.5.x/reference/metadata.html#metadata-annotations-required -->
 	<bean
 		class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
 	

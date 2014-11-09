@@ -1,22 +1,8 @@
-<%String _appContext_ = getServletContext().getContextPath();%>
-<!DOCTYPE html>
-<html>
-<head>
-<script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
-<script src="<%=_appContext_%>/assets/js/test.js"></script>
-<script src="<%=_appContext_%>/assets/js/dragAndDrop.js"></script>
-<script src="<%=_appContext_%>/assets/js/sortComponents.js"></script>
- <style type="text/css">
+/**
+ * 
+ */
 
- #boxB { float:right; width: 50%; margin-right: 50px; background-color: #b0e0e6; -moz-user-select:none; } 
- #runningTotalBox { float:right; width: 50%; height: 10%; margin-right: 50px; background-color: #CCFFFF; }
-
-</style> 
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script language="javascript">
-
-/*  	var runningTotalCalories = 0;
+	var runningTotalCalories = 0;
 	var runningTotalCarbs = 0;
 	var runningTotalProtein = 0;
 	var runningTotalFiber = 0;
@@ -43,7 +29,7 @@
 
 			if (xmlhttp.status == 200) {
 				var det = eval("(" + xmlhttp.responseText + ")");
-				
+				//alert("det[0].favorite = " + det[0].favorite);
 				//sort the array
 				var sortedDet = quickSort(det);
 				
@@ -54,7 +40,8 @@
 				} 
 				
 					for (var i = 0; i < sortedDet.length; i++) {
-						if(sortedDet[i].category == category || category == 0) {
+						//alert("sortedDet[i].favorite = " + sortedDet[i].favorite);
+						if(sortedDet[i].category == category || category == 0 || sortedDet[i].favorite === true)  {
 							//dynamically create a div
 							var magicDiv = document.createElement('div');
 							magicDiv.id = "magicDiv" + i;
@@ -102,6 +89,9 @@
 						}
 
 						magicDiv.addEventListener("dragstart", drag);
+					} else {
+						//alert("Oh well, something's screwed up.");
+						var t = 1;
 					}
 				}
 			} else
@@ -182,76 +172,9 @@ function dragDropBack(ev) {
    return false;
 }
 
-function sortByItemName(array, itemName) {
-    return array.sort(function(a, b) {
-        var x = a[itemName]; var y = b[itemName];
-        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-    });
-}
 
-function quickSort(array){
 
-	var lessThan = new Array();
-	var greaterThan = new Array();
-
-	var item = array.pop();
-	
-
-	for (var j = 0; j < array.length; j++) { 
-		if (array[j].itemname < item.itemname){
-			lessThan.push(array[j]);
-		} else if (array[j].itemname > item.itemname){
-			greaterThan.push(array[j]);
-		} else if (array[j].itemname = item.itemname){
-			lessThan.push(array[j]);
-		}
-	}
-	if (lessThan.length > 1){
-		lessThan = quickSort(lessThan);
-	}
-	if (greaterThan.length > 1){
-		greaterThan = quickSort(greaterThan);
-	}
-	lessThan.push(item);
-	var sortedDet = lessThan.concat(greaterThan);
-	return sortedDet;
-}
- */
-
-  
-</script>
-</head>
-<body onload="init()"> 
-<!-- <body> -->
-	<h1>Meal Planner</h1>
- 	<table>
-		<tr>
-		<td><input type="button" value="Show Favorites" onclick="getdetails(11)" /></td>
-		<td><input type="button" value="Show All" onclick="getdetails(0)" /></td>
-		<td><input type="button" value="Show Protein" onclick="getdetails(1)" /></td>
-		<td><input type="button" value="Show Carbs" onclick="getdetails(2)" /></td>
-		<td><input type="button" value="Show Fruit" onclick="getdetails(3)" /></td>
-		<td><input type="button" value="Show Veggies" onclick="getdetails(4)" /></td>
-		<td><input type="button" value="Show Dairy" onclick="getdetails(5)" /></td>
-		<td><input type="button" value="Show Beverages" onclick="getdetails(8)" /></td>
-		<td><input type="button" value="Show Condiments" onclick="getdetails(10)" /></td>
-		<td><input type="button" value="Show Alcohol" onclick="getdetails(9)" /></td>		
-		<td><input type="button" value="Show Meals" onclick="getdetails(6)" /></td>
-		<td><input type="button" value="Show Other" onclick="getdetails(7)" /></td>
-		</tr>
-	</table> 
-	
-<div id="boxB" ondragenter="return dragEnter(event)" 
-     ondrop="return dragDrop(event)" 
-     ondragover="return dragOver(event)"><b>Menu</b></div>
-     
-<div id="componentContainer" ondragenter="return dragEnter(event)" 
-     ondrop="return dragDropBack(event)" 
-     ondragover="return dragOver(event)"
-     style="height:500px;width:600px;border:1px solid #ccc;overflow:scroll;">
-     </div>
+/*   function popup() {
+alert("Hello World")
+} */
  
-<div id="runningTotalBox">Totals:</div>
- <input type="button" onclick="popup()" value="Click Me!">    
-</body>
-</html>

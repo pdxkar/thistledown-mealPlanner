@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
 <head>
 <script type="text/javascript" src="resources/jQuery.js"></script>
 <script type="text/javascript">
@@ -38,4 +38,4 @@ $(document).ready(function() {
 	<input name="btnSubmit" id="btnSubmit" type="submit" value="submit"/>
 </form>
 </body>
-</html>
+</html> -->

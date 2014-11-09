@@ -1,6 +1,5 @@
 package com.books.controller;
 
-import java.awt.print.Book;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,7 +9,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,8 +17,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.books.booklister.Bookinator;
 import com.books.dao.ComponentDao;
 import com.books.model.Component;
-
-
 
 @Controller
 @RequestMapping(value = "/data")
@@ -57,7 +53,7 @@ public class BooksController {
 	
 //	//this is the good one
 //	//call this service with URL http://localhost:8080/mealPlanner/data/components <= returns the list 	
-//	//call this service with URL http://localhost:8080/mealPlanner/data/  <= returns the js page
+//	//call this service with URL http://localhost:8080/mealPlanner/data/  <= returns the jsp page
 //	//call this service with URL http://localhost:8080/mealPlanner/data/components?componentid=1 <= returns the whole list
 	@RequestMapping(value = "/components", method = RequestMethod.GET, headers = { "Accept=application/json" })
 	public @ResponseBody
@@ -66,19 +62,5 @@ public class BooksController {
 
 		return Bookinator.getListOfComponents(componentDao);
 	}
-	
-	//TEST	
-//	@RequestMapping(value = "/components", method = RequestMethod.GET, headers = { "Accept=application/json" })
-//	public @ResponseBody
-//	Component getListOfComponents() {
-//		System.out.println("BooksController GET /data/components");  
-//		Component component = new Component();
-//		component.setItemid(66);
-//		component.setItemname("Cheese");
-//		component.setCalories(1000000);
-//
-//		return component;
-//	}
-
 	
 }

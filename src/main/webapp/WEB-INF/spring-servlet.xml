@@ -21,19 +21,16 @@
   <!-- Use @Component annotations for bean definitions -->
 
   <context:component-scan base-package="com.books.controller" scoped-proxy="targetClass"/>
-<!--  
-  <context:component-scan base-package="com.books.model" scoped-proxy="targetClass"/>
-  <context:component-scan base-package="com.books.dao" scoped-proxy="targetClass"/>
-  <context:component-scan base-package="com.books.rowmapper" scoped-proxy="targetClass"/>
-  <context:component-scan base-package="com.books.factory" scoped-proxy="targetClass"/>
-  <context:component-scan base-package="com.books.booklister" scoped-proxy="targetClass"/>
--->
 
   <!-- Use @Controller annotations for MVC controller definitions -->
   <mvc:annotation-driven />
   
-	<mvc:resources mapping="/assets/**" location="/assets/" order="-1"/>
-		
+  <!-- resources exclusions from servlet mapping -->
+<!-- <mvc:resources mapping="/css/**" location="../assets/css/" />
+<mvc:resources mapping="/images/**" location="../assets/images/" /> -->
+<!-- <mvc:resources mapping="/js/**" location="../assets/js/" /> -->
+   	<mvc:resources mapping="/assets/**" location="../assets/" order="-1"/>    
+ 		
 	<!-- Ref: http://static.springsource.org/spring/docs/2.5.x/reference/metadata.html#metadata-annotations-required -->
 	<bean
 		class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
@@ -55,6 +52,10 @@
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate"> 
     	<constructor-arg ref="dataSource" />
 	</bean>
+	
+		<bean id="namedJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate"> 
+    	<constructor-arg ref="dataSource" />
+	</bean>
 
 	<bean id="jdbcComponentDao" class="com.books.dao.JdbcComponentDao">
 	<property name="dataSource" ref="dataSource" />
@@ -64,8 +65,7 @@
   <tx:annotation-driven transaction-manager="myTxManager" />
 
   <!-- View resolver -->
-
-     <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">      
+<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">      
          <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
          <property name="suffix" value=".jsp"/>
          <property name="prefix" value="/WEB-INF/"/>

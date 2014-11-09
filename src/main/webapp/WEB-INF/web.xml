@@ -5,6 +5,31 @@
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <load-on-startup>2</load-on-startup>
   </servlet>
+ <servlet>
+    <servlet-name>default</servlet-name>
+    <servlet-class>org.mortbay.jetty.servlet.DefaultServlet</servlet-class>
+  </servlet>
+<!--  <servlet-mapping>
+   <servlet-name>default</servlet-name>
+  <url-pattern>*.css</url-pattern>
+ </servlet-mapping> -->
+ <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.js</url-pattern>
+ </servlet-mapping> 
+ <!-- Default mapping for css and js folders  -->
+<!-- <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/css/*</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/js/*</url-pattern>
+</servlet-mapping> -->
+<!-- <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/assets/*</url-pattern>
+</servlet-mapping> -->
   <servlet-mapping>
     <servlet-name>spring</servlet-name>
     <url-pattern>/</url-pattern>
@@ -16,4 +41,5 @@
 <!--     <welcome-file>index.html</welcome-file> -->
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+  
 </web-app>

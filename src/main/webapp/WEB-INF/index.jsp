@@ -1,14 +1,16 @@
-<!DOCTYPE HTML>
+<%String _appContext_ = getServletContext().getContextPath();%>
+<!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
-
-<style type="text/css">
+<script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+<%--  <script src="<%=_appContext_%>/src/main/webapp/assets/js/test.js"></script>  --%>
+<script src="<%=_appContext_%>/assets/js/test.js"></script>
+ <style type="text/css">
 
  #boxB { float:right; width: 50%; margin-right: 50px; background-color: #b0e0e6; -moz-user-select:none; } 
  #runningTotalBox { float:right; width: 50%; height: 10%; margin-right: 50px; background-color: #CCFFFF; }
 
-</style>
+</style> 
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script language="javascript">
@@ -214,9 +216,14 @@ function quickSort(array){
 	return sortedDet;
 }
 
+/*   function popup() {
+alert("Hello World")
+} */
+ 
 </script>
 </head>
-<body onload="init()">
+<body onload="init()"> 
+<!-- <body> -->
 	<h1>Meal Planner</h1>
  	<table>
 		<tr>
@@ -243,8 +250,8 @@ function quickSort(array){
      ondragover="return dragOver(event)"
      style="height:500px;width:600px;border:1px solid #ccc;overflow:scroll;">
      </div>
-   
+ 
 <div id="runningTotalBox">Totals:</div>
-     
+ <input type="button" onclick="popup()" value="Click Me!">    
 </body>
 </html>

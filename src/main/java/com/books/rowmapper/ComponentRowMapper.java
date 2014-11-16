@@ -39,7 +39,7 @@ public class ComponentRowMapper implements RowMapper<Component> {
 		component.setImage(rs.getString("IMAGE"));
 		component.setCholesterol(rs.getInt("CHOLESTEROL"));
 		component.setIsFavorite(rs.getBoolean("ISFAVORITE"));
-		//.getBoolean("ISFAVORITE"));
+
 		return component;
 	}
 }

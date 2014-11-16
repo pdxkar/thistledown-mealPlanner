@@ -58,6 +58,10 @@
 	<bean id="jdbcComponentDao" class="com.books.dao.JdbcComponentDao">
 	<property name="dataSource" ref="dataSource" />
 	</bean> 
+	
+	<bean id="jdbcDayMenuDao" class="com.books.dao.JdbcDayMenuDao">
+	<property name="dataSource" ref="dataSource" />
+	</bean> 
   
   <!-- Use @Transaction annotations for managing transactions -->
   <tx:annotation-driven transaction-manager="myTxManager" />

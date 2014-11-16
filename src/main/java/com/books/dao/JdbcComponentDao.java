@@ -20,5 +20,13 @@ public class JdbcComponentDao extends JdbcDaoSupport implements ComponentDao {
 	public List<Component> getListOfComponents() {
 		return getJdbcTemplate().query(Component.GET_ALL_COMPONENTS, new ComponentRowMapper());
 	}
+	
+	/**
+	 * @param
+	 * @return list of all components associated with a given DayMenu
+	 */
+	public List<Component> getListOfComponentsForDayMenu(int dayMenuId) {
+		return getJdbcTemplate().query(Component.GET_ALL_COMPONENTS_IN_A_DAYMENU, new ComponentRowMapper(), new Object[]{dayMenuId});
+	}
 
 }

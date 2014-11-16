@@ -16,8 +16,9 @@ public interface ComponentDao {
 
 		public List<Component> getListOfComponents();
 		
+		public List<Component> getListOfComponentsForDayMenu(int dayMenuId);
 		
-
 }
+
 
 

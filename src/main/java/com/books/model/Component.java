@@ -1,11 +1,27 @@
 package com.books.model;
 
-public class Component {
+//import org.apache.log4j.Logger;
 
+public class Component {
+//	 static Logger log4j = Logger.getLogger("com.books.model.Component");
+	 
 	// SQL query to get all components:
 	public static final String GET_ALL_COMPONENTS = "SELECT itemid, itemname, category, basequantity, baseunitofmeasure, "
 			+ " calories, carbs, protein, fiber, sugar, sodium, fat, image, cholesterol, isfavorite"
 			+ " FROM basecomponent";
+	
+	public static final String GET_ALL_COMPONENTS_IN_A_DAYMENU = 
+			"SELECT basecomponent.itemid, itemname, category, basequantity, baseunitofmeasure, calories, carbs, protein, fiber, sugar, fat, image, cholesterol, isfavorite "
+			+"FROM basecomponent "
+			+"JOIN basecomponent_daymenu "
+			+"ON basecomponent.itemid = basecomponent_daymenu.componentid "
+			+"WHERE basecomponent_daymenu.daymenuid = ?";
+	//			+"WHERE basecomponent_daymenu.daymenuid = ?";
+	
+	//SQL query to get a specific daymenu with components attached
+//	public static final String GET_DAYMENU_BY_DAYMENUID = "select itemname from basecomponent, basecomponent_daymenu "
+//	+ " where basecomponent_daymenu.daymenuid = 1 "
+//	+ " and basecomponent_daymenu.componentid = basecomponent.itemid";
 	
 	//private variables
 	private int itemid; 

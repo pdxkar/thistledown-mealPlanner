@@ -1,5 +1,5 @@
 /**
- * 
+ * TODO separate the non-dragAndDrop functionality out into another js file
  */
 
 	var runningTotalCalories = 0;

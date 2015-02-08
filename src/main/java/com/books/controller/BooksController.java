@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.books.booklister.Bookinator;
 import com.books.dao.ComponentDao;
-import com.books.dao.DayMenuDao;
-import com.books.dao.JdbcDayMenuDao;
+/*import com.books.dao.DayMenuDao;
+import com.books.dao.JdbcDayMenuDao;*/
 import com.books.model.Component;
 import com.books.model.DayMenu;
 
@@ -28,12 +28,12 @@ import com.books.model.DayMenu;
 @Order(value = Ordered.HIGHEST_PRECEDENCE)
 public class BooksController {
 	
-	@Autowired
+/*	@Autowired
 	private JdbcDayMenuDao jdbcDayMenuDao;
 	
 	@Resource
 	private DayMenuDao dayMenuDao;
-
+*/
 
 	
 	
@@ -68,12 +68,12 @@ public class BooksController {
 	 * 
 	 *         This endpoint returns a single book as a JSON object/string.
 	 */
-	@RequestMapping(value = "/{mealPlanId}", method = RequestMethod.GET, headers = { "Accept=application/json" })
+/*	@RequestMapping(value = "/{mealPlanId}", method = RequestMethod.GET, headers = { "Accept=application/json" })
 	public @ResponseBody
 	DayMenu getDayMenuById(@PathVariable Integer mealPlanId) {
 //		logger.info("BooksController GET /data/{isbn}");
 		return Bookinator.getDayMenuById(dayMenuDao, componentDao, mealPlanId);
-	}
+	}*/
 	
 	/**
 	 * Handle any exceptions from queryForObject (e.g. query for bookid - not
@@ -94,12 +94,12 @@ public class BooksController {
 		return componentDao;
 	}
 
-	public DayMenuDao getDayMenuDao() {
+/*	public DayMenuDao getDayMenuDao() {
 		return dayMenuDao;
 	}
 
 	public void setDayMenuDao(DayMenuDao dayMenuDao) {
 		this.dayMenuDao = dayMenuDao;
-	}
+	}*/
 	
 }

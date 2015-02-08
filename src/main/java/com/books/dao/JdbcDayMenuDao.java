@@ -1,4 +1,4 @@
-package com.books.dao;
+/*package com.books.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import com.books.model.DayMenu;
 import com.books.rowmapper.DayMenuRowMapper;
 
-public class JdbcDayMenuDao extends JdbcDaoSupport implements DayMenuDao {
+public class JdbcDayMenuDao extends JdbcDaoSupport implements DayMenuDao {*/
 	
 /*	@Autowired
 	private NamedParameterJdbcTemplate namedJdbcTemplate;*/
@@ -16,9 +16,10 @@ public class JdbcDayMenuDao extends JdbcDaoSupport implements DayMenuDao {
 		return getJdbcTemplate().query(DayMenu.GET_ALL_DAYMENUS, new DayMenuRowMapper());
 	}*/
 	
-	public DayMenu getDayMenuById(int dayMenuId) {
+	//last one commented out
+/*	public DayMenu getDayMenuById(int dayMenuId) {
 		return getJdbcTemplate().queryForObject(DayMenu.GET_DAYMENU_BY_ID, new DayMenuRowMapper(), new Object[]{dayMenuId});
-	}
+	}*/
 	
 /*	public Book getBookByIsbn(String isbn) {
 
@@ -26,6 +27,6 @@ public class JdbcDayMenuDao extends JdbcDaoSupport implements DayMenuDao {
 	}
 */
 
-}
+//}
 
 

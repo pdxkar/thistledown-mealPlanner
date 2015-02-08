@@ -33,19 +33,24 @@
 	<bean
 		class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
 	
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-<!-- This works with the postgres DB -->   
-
+<!-- 	This works with the postgres DB    -->
+<!-- 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
  		<property name="driverClassName" value="org.postgresql.Driver"/>
-     <property name="url" value="jdbc:postgresql://localhost:5432/books"/>   <!-- This points to the laptop's DB (localhost) -->
- <!--   <property name="url" value="jdbc:postgresql://192.168.0.51:5432/books"/> -->   <!-- Catalyst: This points to the laptop's DB when the laptop is at Catalyst -->
- <!--        <property name="url" value="jdbc:postgresql://192.168.1.7:5432/books"/>  -->  <!-- Beaverton: This points to the laptop's DB when the laptop is at the Beaverton house -->
- <!--        <property name="url" value="jdbc:postgresql://192.168.1.103:5432/books"/> -->  <!-- Sellwood: This points to the laptop's DB when the laptop is at the Sellwood house -->
-        
+     <property name="url" value="jdbc:postgresql://localhost:5432/books"/>   This points to the laptop's DB (localhost)
+   <property name="url" value="jdbc:postgresql://192.168.0.51:5432/books"/>   Catalyst: This points to the laptop's DB when the laptop is at Catalyst
+        <property name="url" value="jdbc:postgresql://192.168.1.7:5432/books"/>   Beaverton: This points to the laptop's DB when the laptop is at the Beaverton house
+        <property name="url" value="jdbc:postgresql://192.168.1.103:5432/books"/>  Sellwood: This points to the laptop's DB when the laptop is at the Sellwood house
  		<property name="username" value="postgres"/>
         <property name="password" value="postgres"/>
-        
-    </bean>
+    </bean> -->
+    
+<!--     This works with the mySQL database -->
+        <bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />  
+        <property name="url" value="jdbc:mysql://localhost:3306/mealplanner" />  
+        <property name="username" value="root" />  
+        <property name="password" value="root" />  
+    </bean>  
     
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate"> 
     	<constructor-arg ref="dataSource" />
@@ -59,9 +64,9 @@
 	<property name="dataSource" ref="dataSource" />
 	</bean> 
 	
-	<bean id="jdbcDayMenuDao" class="com.books.dao.JdbcDayMenuDao">
+<!-- 	<bean id="jdbcDayMenuDao" class="com.books.dao.JdbcDayMenuDao">
 	<property name="dataSource" ref="dataSource" />
-	</bean> 
+	</bean>  -->
   
   <!-- Use @Transaction annotations for managing transactions -->
   <tx:annotation-driven transaction-manager="myTxManager" />

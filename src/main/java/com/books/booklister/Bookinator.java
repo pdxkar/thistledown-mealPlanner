@@ -3,7 +3,7 @@ package com.books.booklister;
 import java.util.List;
 
 import com.books.dao.ComponentDao;
-import com.books.dao.DayMenuDao;
+//import com.books.dao.DayMenuDao;
 import com.books.model.Component;
 import com.books.model.DayMenu;
 
@@ -35,12 +35,12 @@ public class Bookinator {
 	}
 }*/
 
-	public static DayMenu getDayMenuById(DayMenuDao dayMenuDao, ComponentDao componentDao, int dayMenuId){		
+/*	public static DayMenu getDayMenuById(DayMenuDao dayMenuDao, ComponentDao componentDao, int dayMenuId){		
 
 		DayMenu dayMenuById = dayMenuDao.getDayMenuById(dayMenuId);
 		dayMenuById.setComponentList(componentDao.getListOfComponentsForDayMenu(dayMenuById.getDayMenuId()));
 		return dayMenuById;
 		
-	}
+	}*/
 
 }

@@ -1,5 +1,5 @@
 /**
- * 
+ * Alphabetizes components
  */
 
 function sortByItemName(array, itemName) {

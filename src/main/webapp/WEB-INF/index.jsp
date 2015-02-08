@@ -6,7 +6,7 @@
 <script src="<%=_appContext_%>/assets/js/test.js"></script>
 <script src="<%=_appContext_%>/assets/js/dragAndDrop.js"></script>
 <script src="<%=_appContext_%>/assets/js/sortComponents.js"></script>
-<script src="<%=_appContext_%>/assets/js/displayDayMenu.js"></script>
+<%-- <script src="<%=_appContext_%>/assets/js/displayDayMenu.js"></script> --%>
  <style type="text/css">
 
  #boxB { float:right; width: 50%; margin-right: 50px; background-color: #b0e0e6; -moz-user-select:none; } 
@@ -36,7 +36,7 @@
 		<td><input type="button" value="Show Alcohol" onclick="getdetails(9, false)" /></td>		
 		<td><input type="button" value="Show Meals" onclick="getdetails(6, false)" /></td>
 		<td><input type="button" value="Show Other" onclick="getdetails(7, false)" /></td>
-		<td><input type="button" value="Load Test DayMenu" onclick="getDayMenu()" /></td>
+<!-- 		<td><input type="button" value="Load Test DayMenu" onclick="getDayMenu()" /></td> -->
 		</tr>
 	</table> 
 	

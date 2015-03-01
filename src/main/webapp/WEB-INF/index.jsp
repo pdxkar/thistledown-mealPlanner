@@ -33,8 +33,9 @@
 	function getdetails(category) {
 	
 //	var url = "http://localhost:8080/mealPlanner/data/components/";
-
-	var url = "http://api.data.gov/usda/ndb/reports/?ndbno=01009&type=f&format=json&api_key=a0C0r0iDT31VwSIDjDXChPXkDLpkGBQoSOSDDall";
+// 09040 = banana
+// 01009 = cheddar cheese
+	var url = "http://api.data.gov/usda/ndb/reports/?ndbno=09040&type=f&format=json&api_key=a0C0r0iDT31VwSIDjDXChPXkDLpkGBQoSOSDDall";
 
 	xmlhttp.open('GET', url, true);
 	xmlhttp.send(null);
@@ -56,13 +57,20 @@
 				magicDiv.id = "magicDiv" + 1; 
 /* 				 magicDiv.innerHTML = "<b>This is coming from the magic div</b>";  */
 				
-				magicDiv.itemname = "magicDiv String";
+				/* magicDiv.itemname = "magicDiv String"; */
 				
- 				/* magicDiv.itemname = det.name;   */
+ 			/* 	 magicDiv.itemname = det.name;    */
+				/*  magicDiv.itemname = det;    */ //This yields "object Object"
+				magicDiv.itemname = det.report.food.name; 
+				magicDiv.measurement = det.report.food.nutrients[1].measures[0].eqv;
+				magicDiv.calories = det.report.food.nutrients[1].measures[0].value;
 				
 				/* magicDiv.innerHTML = "<b>" + magicDiv.itemname + "</b>";  */
 				
-				magicDiv.innerHTML = "<b>" + magicDiv.itemname + "</b>";
+				magicDiv.innerHTML = "<b>itemname: " + magicDiv.itemname + "</b>"
+				 + "</br>measurement: " + magicDiv.measurement + " grams "
+				 + "</br>calories: " + magicDiv.calories;
+				
 				
 				containingDiv.appendChild(magicDiv);
 				document.body.appendChild(containingDiv);

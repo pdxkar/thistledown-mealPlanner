@@ -135,6 +135,34 @@ function showValues(ndbno) {
 return false;
 } 
 
+function Test() {
+	alert("testing123");
+
+var http = new XMLHttpRequest();
+//var url = "get_data.php";
+var urlTest = "http://localhost:8080/mealPlanner/data/addComponent";
+
+//var params = "lorem=ipsum&name=binny";
+var params = "itemName=cheeseyFries&baseQuantity=1&baseUnitOfMeasure=grams&calories=175";
+http.open("POST", urlTest, true);
+
+//Send the proper header information along with the request
+http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+http.setRequestHeader("Content-length", params.length);
+http.setRequestHeader("Connection", "close");
+
+http.onreadystatechange = function() {//Call a function when the state changes.
+    if(http.readyState == 4 && http.status == 200) {
+        alert(http.responseText);
+    }
+};
+http.send(params);
+	
+	alert("got this far");
+
+	return false;
+} 
+
 </script> 
 </head>
 
@@ -144,6 +172,10 @@ return false;
 <form name="search" >Search for this item: 
   <input type="text" name="keyword" id="keyword"  />
   <input type="button" name="btnser" onclick="Search()" value="Search" />
+</form>
+
+<form name="test" >This is a test: 
+  <input type="button" name="test" onclick="Test()" value="Test" />
 </form>
 
      

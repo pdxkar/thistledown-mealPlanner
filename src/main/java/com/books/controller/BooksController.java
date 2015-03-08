@@ -78,6 +78,7 @@ public class BooksController {
 	 * @param publishYear
 	 * @param image
 	 */
+	// call this service with URL http://localhost:8080/mealPlanner/data/addComponent <= use with POSTMAN
 	@ResponseBody
 	@RequestMapping(value = "/addComponent", method = RequestMethod.POST, headers = { "Accept=application/json" })
 	public void addComponent(

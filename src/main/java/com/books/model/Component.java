@@ -7,6 +7,19 @@ public class Component {
 			+ " calories, carbs, protein, fiber, sugar, sodium, fat, image, cholesterol, isfavorite"
 			+ " FROM basecomponent";
 	
+	//SQL query to add a component
+	public static final String ADD_COMPONENT = "INSERT INTO basecomponent ("
+			+ " itemName"
+			+ ", baseQuantity"
+			+ ", baseUnitOfMeasure"
+			+ ", calories"
+			+ ") VALUES ("
+			+ "  :ITEMNAME"
+			+ " ,:BASEQUANTITY"			
+			+ " ,:BASEUNITOFMEASURE"
+			+ " ,:CALORIES"
+			+ ")";
+	
 	//private variables
 	private int itemid; 
 	private String itemname;

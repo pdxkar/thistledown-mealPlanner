@@ -9,9 +9,14 @@ var xmlhttp;
 function init() {
 		
 	xmlhttp = new XMLHttpRequest();
+	
+		//alert("Made it to init()");
+	
+
 }
 	
 function Search(){
+
 var keywrod = document.getElementById("keyword").value; 
 var url2 = "http://api.nal.usda.gov/usda/ndb/search/?format=json&q=" + keywrod + "&sort=n&max=250&offset=0&api_key=a0C0r0iDT31VwSIDjDXChPXkDLpkGBQoSOSDDall";
 
@@ -75,6 +80,18 @@ return false;
 } 
 
 function showValues(ndbno) {
+
+	//create button that can save selected measurement to the db
+	var inputElement = document.createElement('input');
+	inputElement.type = "button";
+	inputElement.value = "Save Selection to My QuickList"
+	inputElement.addEventListener('click', function(){
+		saveSelectionToDatabase(20, "myString");
+		//saveSelectionToDatabase();
+	});
+	document.body.appendChild(inputElement);
+
+	//get the associated measurements from usda using ndbno#
 	var url3 = "http://api.nal.usda.gov/usda/ndb/reports/?ndbno=" + ndbno + "&type=f&format=json&api_key=a0C0r0iDT31VwSIDjDXChPXkDLpkGBQoSOSDDall";
 
 	xmlhttp.open('GET', url3, true);
@@ -104,28 +121,19 @@ function showValues(ndbno) {
                 var nameDiv = document.createElement('div');
                 nameDiv.innerHTML = "<b>" + "<a style=\"color:black; font-size:120%;\">" + itemname + "</a>" + "</b>";
                 containingDiv.appendChild(nameDiv);
+				            
+		            var selectElement = document.createElement ("select");
+		            for (var i = 0; i < det2.report.food.nutrients[1].measures.length; i++) 
+		            {
+		             		var label = det2.report.food.nutrients[1].measures[i].label; 
+							var grams = det2.report.food.nutrients[1].measures[i].eqv; 
+							var qty = det2.report.food.nutrients[1].measures[i].qty;
+							var kcal = det2.report.food.nutrients[1].measures[i].value;  
+		                var option = new Option (qty + " " + label + " " + kcal + " kcal");
+		                selectElement.options[selectElement.options.length] = option;
+		            }
+		            document.body.appendChild (selectElement); 
                 
-                //display each measurement and its related calories
-				for (var i = 0; i < det2.report.food.nutrients[1].measures.length; i++) {
-					var magicDiv = document.createElement('div');
-					magicDiv.id = "magicDiv" + 1; 
-							magicDiv.label = det2.report.food.nutrients[1].measures[i].label; 
-							magicDiv.grams = det2.report.food.nutrients[1].measures[i].eqv; 
-							magicDiv.qty = det2.report.food.nutrients[1].measures[i].qty;
-							magicDiv.kcal = det2.report.food.nutrients[1].measures[i].value; 
-
-							//set innerHTML
-							magicDiv.innerHTML = 
-										 "<b>" + "<a style=\"color:blue; font-size:99%;\">" 
-										 + magicDiv.qty + " "
-										 + magicDiv.label + "</a>" + "</b>" + ", " 
-										 + magicDiv.grams + " grams, " + "<b>" 
-										 + magicDiv.kcal + " calories";		
-					
-					containingDiv.appendChild(magicDiv);
-					document.body.appendChild(containingDiv);
-					
-				}
 
 			} else
 				alert("Error ->" + xmlhttp.responseText); 
@@ -135,15 +143,26 @@ function showValues(ndbno) {
 return false;
 } 
 
-function Test() {
+//see http://stackoverflow.com/questions/9643311/pass-string-parameter-in-an-onclick-function
+//function Test(itemName, baseQuantity, baseUnitOfMeasure, calories) {
+//function saveSelectionToDatabase(itemName, baseQuantity, baseUnitOfMeasure, gramEqv, kcal) {
+function saveSelectionToDatabase(number, string) {
 	alert("testing123");
+	alert("number = " + number);
+	alert("string = " + string);
+//	alert("itemNum = " + itemNum);
+//		alert("baseQuantity = " + baseQuantity);
+//			alert("baseUnitOfMeasure = " + baseUnitOfMeasure);
+//				alert("gramEqv = " + gramEqv);
+//					alert("kcal = " + kcal);
 
-var http = new XMLHttpRequest();
+/* var http = new XMLHttpRequest();
 //var url = "get_data.php";
 var urlTest = "http://localhost:8080/mealPlanner/data/addComponent";
 
 //var params = "lorem=ipsum&name=binny";
-var params = "itemName=cheeseyFries&baseQuantity=1&baseUnitOfMeasure=grams&calories=175";
+//var params = "itemName=" +itemName+ "&baseQuantity=" +baseQuantity+ "&baseUnitOfMeasure=" +baseUnitOfMeasure+ "&calories=" + kcal;
+var params = "itemName=" +'testing123'+ "&baseQuantity=" +2+ "&baseUnitOfMeasure=" +cup+ "&calories=" + 123;
 http.open("POST", urlTest, true);
 
 //Send the proper header information along with the request
@@ -156,12 +175,12 @@ http.onreadystatechange = function() {//Call a function when the state changes.
         alert(http.responseText);
     }
 };
-http.send(params);
+http.send(params); */
 	
-	alert("got this far");
+//	alert("got this far");
 
-	return false;
-} 
+//	return false;
+}  
 
 </script> 
 </head>
@@ -174,10 +193,6 @@ http.send(params);
   <input type="button" name="btnser" onclick="Search()" value="Search" />
 </form>
 
-<form name="test" >This is a test: 
-  <input type="button" name="test" onclick="Test()" value="Test" />
-</form>
-
-     
+   
 </body>
 </html>

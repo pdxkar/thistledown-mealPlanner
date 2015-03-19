@@ -16,7 +16,9 @@ public interface ComponentDao {
 
 		public List<Component> getListOfComponents();
 		
-		public void addComponent(final String itemName, final Integer baseQuantity, final String baseUnitOfMeasure, final Integer calories);
+	//	public void addComponent(final String itemName, final Integer baseQuantity, final String baseUnitOfMeasure, final Integer calories);
+		
+		public void addComponent(final String itemName, final Integer baseQuantity, final String baseUnitOfMeasure, final Integer calories, final Boolean isFavorite);
 
 }
 

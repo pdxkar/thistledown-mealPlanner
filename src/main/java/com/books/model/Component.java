@@ -8,7 +8,7 @@ public class Component {
 			+ " FROM basecomponent";
 	
 	//SQL query to add a component
-	public static final String ADD_COMPONENT = "INSERT INTO basecomponent ("
+/*	public static final String ADD_COMPONENT = "INSERT INTO basecomponent ("
 			+ " itemName"
 			+ ", baseQuantity"
 			+ ", baseUnitOfMeasure"
@@ -18,6 +18,21 @@ public class Component {
 			+ " ,:BASEQUANTITY"			
 			+ " ,:BASEUNITOFMEASURE"
 			+ " ,:CALORIES"
+			+ ")";*/
+	
+	//SQL query to add a component
+	public static final String ADD_COMPONENT = "INSERT INTO basecomponent ("
+			+ " itemName"
+			+ ", baseQuantity"
+			+ ", baseUnitOfMeasure"
+			+ ", calories"
+			+ ", isFavorite"
+			+ ") VALUES ("
+			+ "  :ITEMNAME"
+			+ " ,:BASEQUANTITY"			
+			+ " ,:BASEUNITOFMEASURE"
+			+ " ,:CALORIES"
+			+ " ,:ISFAVORITE"
 			+ ")";
 	
 	//private variables

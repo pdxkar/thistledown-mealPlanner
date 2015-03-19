@@ -78,7 +78,7 @@ public class BooksController {
 	 * @param publishYear
 	 * @param image
 	 */
-	// call this service with URL http://localhost:8080/mealPlanner/data/addComponent <= use with POSTMAN
+	// call this service with URL http://localhost:8080/mealPlanner/data/addComponent <= can use this with POSTMAN
 	@ResponseBody
 	@RequestMapping(value = "/addComponent", method = RequestMethod.POST, headers = { "Accept=application/json" })
 	public void addComponent(
@@ -86,11 +86,12 @@ public class BooksController {
 		@RequestParam(value = "itemName", required = false) String itemName,
 		@RequestParam(value = "baseQuantity", required = false) Integer baseQuantity,
 		@RequestParam(value = "baseUnitOfMeasure", required = false) String baseUnitOfMeasure,
-		@RequestParam(value = "calories", required = false) Integer calories) {
+		@RequestParam(value = "calories", required = false) Integer calories,
+		@RequestParam(value = "isFavorite", required = false) Boolean isFavorite) {
 		
 		System.out.println("BooksController POST /data/addComponent");  
 	
-		jdbcComponentDao.addComponent(itemName, baseQuantity, baseUnitOfMeasure, calories);
+		jdbcComponentDao.addComponent(itemName, baseQuantity, baseUnitOfMeasure, calories, isFavorite);
 
 	}
 	

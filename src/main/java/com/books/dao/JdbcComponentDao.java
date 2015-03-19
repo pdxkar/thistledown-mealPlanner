@@ -33,7 +33,8 @@ public class JdbcComponentDao extends JdbcDaoSupport implements ComponentDao {
 		return getJdbcTemplate().query(Component.GET_ALL_COMPONENTS, new ComponentRowMapper());
 	}
 
-	public void addComponent(final String itemName, final Integer baseQuantity, final String baseUnitOfMeasure, final Integer calories){
+//	public void addComponent(final String itemName, final Integer baseQuantity, final String baseUnitOfMeasure, final Integer calories){
+		public void addComponent(final String itemName, final Integer baseQuantity, final String baseUnitOfMeasure, final Integer calories, final Boolean isFavorite){
 
 			MapSqlParameterSource componentMap = new MapSqlParameterSource();
 			
@@ -44,6 +45,7 @@ public class JdbcComponentDao extends JdbcDaoSupport implements ComponentDao {
 			componentMap.addValue("BASEQUANTITY", baseQuantity);
 			componentMap.addValue("BASEUNITOFMEASURE", baseUnitOfMeasure);
 			componentMap.addValue("CALORIES", calories);
+			componentMap.addValue("ISFAVORITE", isFavorite);
 			
 			//This adds the component to the component table in the database
 			namedJdbcTemplate.update(Component.ADD_COMPONENT, componentMap, holderForComponentId, new String[] { COMPONENTID });

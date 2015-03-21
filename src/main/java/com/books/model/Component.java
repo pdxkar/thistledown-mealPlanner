@@ -15,6 +15,7 @@ public class Component {
 			+ " calories"
 			+ " FROM basecomponent"
 			+ " WHERE isFavorite = ?";*/
+	//*****we're pretending that "carbs" are actually "gram equivalents just until we can re-work the db
 	public static final String GET_QUICK_LIST = "SELECT itemid, itemname, category, basequantity, baseunitofmeasure, "
 			+ " calories, carbs, protein, fiber, sugar, sodium, fat, image, cholesterol, isfavorite"
 			+ " FROM basecomponent"
@@ -44,6 +45,7 @@ public class Component {
 	private float basequantity;
 	private String baseunitofmeasure;
 	private int calories;
+	//*****we're pretending that "carbs" are actually "gram equivalents just until we can re-work the db
 	private float carbs;
 	private int protein;
 	private float fiber;

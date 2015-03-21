@@ -147,21 +147,89 @@ function showValues(ndbno) {
 	            var selectElement = document.createElement ("select");
 	            selectElement.id = "measurementSelectBox";
 	            
-	            for (var i = 0; i < det2.report.food.nutrients[1].measures.length; i++) 
+	            //these variables need to be global so we can add g and oz to the select box if they aren't already there
+	            var isGramMeasurePresentInList = false;
+	           	var isOunceMeasurePresentInList = false;
+	           	var label;
+	           	var gramEquivalent;
+	           	var qty;
+	           	var kcal;
+	           	//i has to be global so gram and ounce can be added to the list
+	           	var i;
+	            
+	            //for each measurement of the selected food item	            
+	            for (i = 0; i < det2.report.food.nutrients[1].measures.length; i++) 
 	            {
-             		var label = det2.report.food.nutrients[1].measures[i].label; 
-					var grams = det2.report.food.nutrients[1].measures[i].eqv; 
-					var qty = det2.report.food.nutrients[1].measures[i].qty;
-					var kcal = det2.report.food.nutrients[1].measures[i].value;  
+	            	//THESE ARE THE ONLY FOUR THINGS AVAILABLE AT THIS URL
+	            	//label is the USDA's name of the measurement ("oz", "cup, diced" etc.)
+	            	label = det2.report.food.nutrients[1].measures[i].label; 
+             		//eqv is the USDA's gram equivalent for each measurement
+					gramEquivalent = det2.report.food.nutrients[1].measures[i].eqv;
+					//qty : not really sure...is it a base serving size, like 1 gram or 3 links?
+					qty = det2.report.food.nutrients[1].measures[i].qty;
+					//value is the USDA's calories in each measurement
+					kcal = det2.report.food.nutrients[1].measures[i].value;  
+					
+					//below is an example of how to load multiple things into the select box:
                		//var option = new Option (qty + " " + label + " " + kcal + " kcal");  
                		
-               		if (label == "oz"){
-               			var option = new Option ("g", Math.round(kcal/28.3495));
-               			selectElement.options[selectElement.options.length] = option;
+               		//declare measurement "oz"'s presence in the select box list
+               		if(label == "oz"){
+               			isOunceMeasurePresentInList = true;
                		}
-               			var option = new Option (label, kcal); 
-               			selectElement.options[selectElement.options.length] = option;
-	                
+               		//declare measurement "g"'s presence in the select box list
+               		if(label == "g"){
+               			isGramMeasurePresentInList = true;
+               		}
+               		              		
+               		//create a foodItem object to put into the select box
+               		var foodItem = {label: label, gramEquivalent: gramEquivalent, baseQty: qty, calPerUnit: kcal};
+               		
+               		//create an option in the dropdown list that corresponds with this measurement
+             		var option = new Option (foodItem); 
+             		option.text = foodItem.label;
+             		option.value = foodItem.calPerUnit;
+             		selectElement.options[selectElement.options.length] = option;
+	            }
+	            
+	            //now that each of the measurements have been put into the option list, put "g" and "oz" in
+	            //if they aren't already present in the list
+	            if(isOunceMeasurePresentInList == false){
+	            
+	            	//create an option in the dropdown list that corresponds with gram
+	            	label = "oz";
+	            	//This is using the values that are left over in the variables above
+	            	//it would be better to specifically pick the first selection
+	            	calPerOz = kcal/(gramEquivalent/28.3495); 
+             		
+             		//create a foodItem object to match it
+               		var foodItem = {label: label, gramEquivalent: 1, baseQty: 1, calPerUnit: calPerOz};
+               		
+               		var option = new Option (foodItem); 
+             		option.text = foodItem.label;
+             		option.value = foodItem.calPerUnit;
+
+             		selectElement.options[i++] = option;
+
+	            	
+	            }
+	            if(isGramMeasurePresentInList == false){
+	            
+	            	//create an option in the dropdown list that corresponds with gram
+	            	label = "g";
+	            	//This is using the values that are left over in the variables above
+	            	//it would be better to specifically pick the first selection
+	            	calPerG = kcal/gramEquivalent; 
+
+            		//create a foodItem object to match it
+               		var foodItem = {label: label, gramEquivalent: 1, baseQty: 1, calPerUnit: calPerG};
+               		
+               		var option = new Option (foodItem); 
+             		option.text = foodItem.label;
+             		option.value = foodItem.calPerUnit;
+             		
+             		selectElement.options[i++] = option;
+	            	
 	            }
 	            document.body.appendChild (selectElement); 
 	            
@@ -186,13 +254,13 @@ function showValues(ndbno) {
 	            var caloriesOfSelectedMeasurement;
 	            //var isFavorite;
 
-				
+				//add a "calculate Calories" button to the ui
  				calculateButton.addEventListener('click', function(){
 	             	var usersQuantity = document.getElementById("userQty").value;
-	             	var e = document.getElementById("measurementSelectBox");
+ 	             	var e = document.getElementById("measurementSelectBox");
 	             	caloriesOfSelectedMeasurement = e.options[e.selectedIndex].value;
-	             	baseUnitOfMeasure = e.options[e.selectedIndex].text;
-		            document.getElementById('totalCalBox').value = caloriesOfSelectedMeasurement * usersQuantity;
+	             	baseUnitOfMeasure = e.options[e.selectedIndex].text; 
+		            document.getElementById('totalCalBox').value = Math.round(caloriesOfSelectedMeasurement * usersQuantity);
 				}); 
 				document.body.appendChild(calculateButton);
 				
@@ -221,7 +289,6 @@ function showValues(ndbno) {
 	
 					});
 				document.body.appendChild(inputElement);
-                
 
 			} else
 				//this alert happens if there is a gateway timeout (server 199.136.16.15 is unreachable)
@@ -236,6 +303,7 @@ return false;
 } 
 
 //create showQuickList button
+//right now this function only gets called if the USDA site is down
 function createDisplayQuicklistButton(){
 		//create button to display contents of quicklist
 		var inputElement = document.createElement('input');

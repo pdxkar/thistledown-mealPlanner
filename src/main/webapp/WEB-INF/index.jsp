@@ -197,9 +197,19 @@ function showValues(ndbno) {
 				inputElement.type = "button";
 				inputElement.value = "Save Selection to My QuickList";
 				inputElement.addEventListener('click', function(){
-				saveSelectionToDatabase(itemname, 1, baseUnitOfMeasure, caloriesOfSelectedMeasurement, true);
-
-				});
+					saveSelectionToDatabase(itemname, 1, baseUnitOfMeasure, caloriesOfSelectedMeasurement, true);
+	
+					});
+				document.body.appendChild(inputElement);
+				
+				//create button to display contents of quicklist
+				var inputElement = document.createElement('input');
+				inputElement.type = "button";
+				inputElement.value = "Display QuickList";
+				inputElement.addEventListener('click', function(){
+					fetchQuickListFromDB();
+	
+					});
 				document.body.appendChild(inputElement);
                 
 
@@ -213,30 +223,97 @@ return false;
 
 //see http://stackoverflow.com/questions/9643311/pass-string-parameter-in-an-onclick-function
 function saveSelectionToDatabase(itemName, baseQuantity, baseUnitOfMeasure, caloriesOfSelectedMeasurement, isFavorite) {
-var http = new XMLHttpRequest();
-var urlTest = "http://localhost:8080/mealPlanner/data/addComponent";
-
-var params = "itemName=" + itemName 
-			+ "&baseQuantity=" + baseQuantity 
-			+ "&baseUnitOfMeasure=" + baseUnitOfMeasure 
-			+ "&calories=" + caloriesOfSelectedMeasurement
-			+ "&isFavorite=" + isFavorite;
-
-http.open("POST", urlTest, true);
-
-//Send the proper header information along with the request
-http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-http.setRequestHeader("Content-length", params.length);
-http.setRequestHeader("Connection", "close");
-
-http.onreadystatechange = function() {    //Call a function when the state changes.
-    if(http.readyState == 4 && http.status == 200) {
-        alert(http.responseText);
-    }
-};
-http.send(params); 
+	var http = new XMLHttpRequest();
+	var urlAddComponent = "http://localhost:8080/mealPlanner/data/addComponent";
+	
+	var params = "itemName=" + itemName 
+				+ "&baseQuantity=" + baseQuantity 
+				+ "&baseUnitOfMeasure=" + baseUnitOfMeasure 
+				+ "&calories=" + caloriesOfSelectedMeasurement
+				+ "&isFavorite=" + isFavorite;
+	
+	http.open("POST", urlAddComponent, true);
+	
+	//Send the proper header information along with the request
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.setRequestHeader("Content-length", params.length);
+	http.setRequestHeader("Connection", "close");
+	
+	http.onreadystatechange = function() {    //Call a function when the state changes.
+	    if(http.readyState == 4 && http.status == 200) {
+	        alert(http.responseText);
+	    }
+	};
+	http.send(params); 
 
 }  
+
+/* 
+	xmlhttp.open('GET', url2, true);
+	xmlhttp.send(null);
+	xmlhttp.onreadystatechange = function() {
+
+		if (xmlhttp.readyState == 4) {
+
+			if (xmlhttp.status == 200) {
+				var det = eval("(" + xmlhttp.responseText + ")"); 
+				
+				//clear any component list previously displayed
+
+ */
+
+function fetchQuickListFromDB(){
+
+	var urlGetQuickList = "http://localhost:8080/mealPlanner/data/getQuickList";
+	
+	xmlhttp.open('GET', urlGetQuickList, true);
+	xmlhttp.send(null);
+	xmlhttp.onreadystatechange = function() {
+
+		if (xmlhttp.readyState == 4) {
+
+			if (xmlhttp.status == 200) {
+
+				var det5 = eval("(" + xmlhttp.responseText + ")"); 
+				
+				var containingDiv2 = document.createElement('div');
+				containingDiv2.id = "containingDiv";
+				containingDiv2.style.height = "500px";
+				containingDiv2.style.width = "1200px";
+				containingDiv2.style.border =  "1px solid #ccc";
+                containingDiv2.style.overflow = "scroll"; 
+				
+				for (var i = 0; i < det5.length; i++) {
+					var quickListDiv = document.createElement('div');
+					quickListDiv.id = "quickListDiv" + 1; 
+					
+					quickListDiv.itemname = det5[i].itemname; 
+					quickListDiv.baseunitofmeasure = det5[i].baseunitofmeasure;
+					quickListDiv.calories = det5[i].calories;
+					
+					//set innerHTML
+					quickListDiv.innerHTML = 
+						"<a style=\"color: grey; font-size: 85%; font-style: italic;\">"
+										 + quickListDiv.itemname 
+    									 + "</a>"
+										 + "&nbsp;" + "&nbsp;"
+										 + quickListDiv.baseunitofmeasure  
+										 + "&nbsp;" + "&nbsp;"
+										 + quickListDiv.calories 
+										 + "<br />";
+
+					containingDiv2.appendChild(quickListDiv);
+					document.body.appendChild(containingDiv2);
+
+				}
+
+			} else
+				alert("Error ->" + xmlhttp.responseText); 
+		}
+	};
+	
+	return false;
+}
 
 </script> 
 </head>

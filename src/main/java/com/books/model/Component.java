@@ -7,18 +7,18 @@ public class Component {
 			+ " calories, carbs, protein, fiber, sugar, sodium, fat, image, cholesterol, isfavorite"
 			+ " FROM basecomponent";
 	
-	//SQL query to add a component
-/*	public static final String ADD_COMPONENT = "INSERT INTO basecomponent ("
-			+ " itemName"
-			+ ", baseQuantity"
-			+ ", baseUnitOfMeasure"
-			+ ", calories"
-			+ ") VALUES ("
-			+ "  :ITEMNAME"
-			+ " ,:BASEQUANTITY"			
-			+ " ,:BASEUNITOFMEASURE"
-			+ " ,:CALORIES"
-			+ ")";*/
+	//SQL query to get QuickList from DB (isFavorite = TRUE)
+	//this is going to have to soon take a "category" or something so that the favorites can be
+	//allocated between the "breakfast" section, "dinner" section etc.
+	//this will have to eventually take a userId because every user has a different quicklist
+/*	public static final String GET_QUICK_LIST = "SELECT itemid, itemname, basequantity, baseunitofmeasure, "
+			+ " calories"
+			+ " FROM basecomponent"
+			+ " WHERE isFavorite = ?";*/
+	public static final String GET_QUICK_LIST = "SELECT itemid, itemname, category, basequantity, baseunitofmeasure, "
+			+ " calories, carbs, protein, fiber, sugar, sodium, fat, image, cholesterol, isfavorite"
+			+ " FROM basecomponent"
+			+ " WHERE isFavorite = ?";
 	
 	//SQL query to add a component
 	public static final String ADD_COMPONENT = "INSERT INTO basecomponent ("

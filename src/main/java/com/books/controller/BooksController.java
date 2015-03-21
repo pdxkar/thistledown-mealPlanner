@@ -57,16 +57,27 @@ public class BooksController {
 		return componentDao;
 	}
 	
-//	//this is the good one
-//	//call this service with URL http://localhost:8080/mealPlanner/data/components <= returns the list 	
-//	//call this service with URL http://localhost:8080/mealPlanner/data/  <= returns the jsp page
-//	//call this service with URL http://localhost:8080/mealPlanner/data/components?componentid=1 <= returns the whole list
+	//call this service with URL http://localhost:8080/mealPlanner/data/components <= returns the list 	
+	//call this service with URL http://localhost:8080/mealPlanner/data/  <= returns the jsp page
+	//call this service with URL http://localhost:8080/mealPlanner/data/components?componentid=1 <= returns the whole list
 	@RequestMapping(value = "/components", method = RequestMethod.GET, headers = { "Accept=application/json" })
 	public @ResponseBody
 	List<Component> getListOfComponents() {
 		System.out.println("BooksController GET /data/components");  
 
 		return Bookinator.getListOfComponents(componentDao);
+	}
+	
+	// call this service with URL http://localhost:8080/mealPlanner/data/getQuickList <= can use this with POSTMAN
+	@RequestMapping(value = "/getQuickList", method = RequestMethod.GET, headers = { "Accept=application/json" })
+	public @ResponseBody
+	List<Component> getQuickList() {
+		System.out.println("BooksController GET /data/getQuickList");
+		
+		//Later we're going to need a userId too, but for now all favorites belong on the quicklist
+		Boolean isFavorite = true;
+
+		return Bookinator.getQuickList(componentDao, isFavorite);
 	}
 	
 	/**

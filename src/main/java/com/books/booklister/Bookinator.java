@@ -16,4 +16,10 @@ public class Bookinator {
 		
 		return componentDao.getListOfComponents();
 	}
+	
+	public static List<Component> getQuickList(ComponentDao componentDao, Boolean isFavorite) {
+		
+		return componentDao.getQuickList(isFavorite);
+	}
+	
 }

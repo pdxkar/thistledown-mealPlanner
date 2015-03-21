@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+
 import com.books.model.Component;
 import com.books.rowmapper.ComponentRowMapper;
 
@@ -32,8 +33,11 @@ public class JdbcComponentDao extends JdbcDaoSupport implements ComponentDao {
 	public List<Component> getListOfComponents() {
 		return getJdbcTemplate().query(Component.GET_ALL_COMPONENTS, new ComponentRowMapper());
 	}
+	
+	public List<Component> getQuickList(Boolean isFavorite) {
+		return getJdbcTemplate().query(Component.GET_QUICK_LIST, new ComponentRowMapper(),  new Object[]{isFavorite}); 
+	}
 
-//	public void addComponent(final String itemName, final Integer baseQuantity, final String baseUnitOfMeasure, final Integer calories){
 		public void addComponent(final String itemName, final Integer baseQuantity, final String baseUnitOfMeasure, final Integer calories, final Boolean isFavorite){
 
 			MapSqlParameterSource componentMap = new MapSqlParameterSource();

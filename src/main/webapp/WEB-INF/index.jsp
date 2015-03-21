@@ -68,7 +68,12 @@ var url2 = "http://api.nal.usda.gov/usda/ndb/search/?format=json&q=" + keywrod +
 				}
 
 			} else
+				//this alert happens if there is a gateway timeout (server 199.136.16.15 is unreachable)
 				alert("Error ->" + xmlhttp.responseText); 
+				
+				//this alternative doesn't seem to work if the site is actually functioning
+				//showValues(10011);
+				
 		}
 	};
 
@@ -144,18 +149,18 @@ function showValues(ndbno) {
 	            
 	            for (var i = 0; i < det2.report.food.nutrients[1].measures.length; i++) 
 	            {
-	             		var label = det2.report.food.nutrients[1].measures[i].label; 
-						var grams = det2.report.food.nutrients[1].measures[i].eqv; 
-						var qty = det2.report.food.nutrients[1].measures[i].qty;
-						var kcal = det2.report.food.nutrients[1].measures[i].value;  
-	               		//var option = new Option (qty + " " + label + " " + kcal + " kcal");  
-	               		
-	               		if (label == "oz"){
-	               			var option = new Option ("g", Math.round(kcal/28.3495));
-	               			selectElement.options[selectElement.options.length] = option;
-	               		}
-	               			var option = new Option (label, kcal); 
-	               			selectElement.options[selectElement.options.length] = option;
+             		var label = det2.report.food.nutrients[1].measures[i].label; 
+					var grams = det2.report.food.nutrients[1].measures[i].eqv; 
+					var qty = det2.report.food.nutrients[1].measures[i].qty;
+					var kcal = det2.report.food.nutrients[1].measures[i].value;  
+               		//var option = new Option (qty + " " + label + " " + kcal + " kcal");  
+               		
+               		if (label == "oz"){
+               			var option = new Option ("g", Math.round(kcal/28.3495));
+               			selectElement.options[selectElement.options.length] = option;
+               		}
+               			var option = new Option (label, kcal); 
+               			selectElement.options[selectElement.options.length] = option;
 	                
 	            }
 	            document.body.appendChild (selectElement); 
@@ -174,8 +179,13 @@ function showValues(ndbno) {
 				calculateButton.value = "How Many Calories?";
 				
 				//these have to be global so they can be saved to the quicklist below
+				//var itemname //<==defined somewhere else
+				//var category;
+				//var baseQuantity;
+				var baseUnitOfMeasure;
 	            var caloriesOfSelectedMeasurement;
-	            var baseUnitOfMeasure;
+	            //var isFavorite;
+
 				
  				calculateButton.addEventListener('click', function(){
 	             	var usersQuantity = document.getElementById("userQty").value;
@@ -197,7 +207,7 @@ function showValues(ndbno) {
 				inputElement.type = "button";
 				inputElement.value = "Save Selection to My QuickList";
 				inputElement.addEventListener('click', function(){
-					saveSelectionToDatabase(itemname, 1, baseUnitOfMeasure, caloriesOfSelectedMeasurement, true);
+					saveSelectionToDatabase(itemname, 0, 1, baseUnitOfMeasure, caloriesOfSelectedMeasurement, true);
 	
 					});
 				document.body.appendChild(inputElement);
@@ -214,19 +224,37 @@ function showValues(ndbno) {
                 
 
 			} else
+				//this alert happens if there is a gateway timeout (server 199.136.16.15 is unreachable)
 				alert("Error ->" + xmlhttp.responseText); 
+				
+				//this alternative doesn't seem to work if the site is actually functioning
+				//createDisplayQuicklistButton();
 		}
 	};
 
 return false;
 } 
 
+//create showQuickList button
+function createDisplayQuicklistButton(){
+		//create button to display contents of quicklist
+		var inputElement = document.createElement('input');
+		inputElement.type = "button";
+		inputElement.value = "Display QuickList";
+		inputElement.addEventListener('click', function(){
+			fetchQuickListFromDB();
+
+			});
+		document.body.appendChild(inputElement);
+}
+
 //see http://stackoverflow.com/questions/9643311/pass-string-parameter-in-an-onclick-function
-function saveSelectionToDatabase(itemName, baseQuantity, baseUnitOfMeasure, caloriesOfSelectedMeasurement, isFavorite) {
+function saveSelectionToDatabase(itemName, category, baseQuantity, baseUnitOfMeasure, caloriesOfSelectedMeasurement, isFavorite) {
 	var http = new XMLHttpRequest();
 	var urlAddComponent = "http://localhost:8080/mealPlanner/data/addComponent";
 	
 	var params = "itemName=" + itemName 
+				+ "&category=" + category 
 				+ "&baseQuantity=" + baseQuantity 
 				+ "&baseUnitOfMeasure=" + baseUnitOfMeasure 
 				+ "&calories=" + caloriesOfSelectedMeasurement
@@ -248,20 +276,6 @@ function saveSelectionToDatabase(itemName, baseQuantity, baseUnitOfMeasure, calo
 
 }  
 
-/* 
-	xmlhttp.open('GET', url2, true);
-	xmlhttp.send(null);
-	xmlhttp.onreadystatechange = function() {
-
-		if (xmlhttp.readyState == 4) {
-
-			if (xmlhttp.status == 200) {
-				var det = eval("(" + xmlhttp.responseText + ")"); 
-				
-				//clear any component list previously displayed
-
- */
-
 function fetchQuickListFromDB(){
 
 	var urlGetQuickList = "http://localhost:8080/mealPlanner/data/getQuickList";
@@ -276,22 +290,96 @@ function fetchQuickListFromDB(){
 
 				var det5 = eval("(" + xmlhttp.responseText + ")"); 
 				
+				//all of these stupid divs should be consolidated and css'ed
 				var containingDiv2 = document.createElement('div');
-				containingDiv2.id = "containingDiv";
+				containingDiv2.id = "containingDiv2"; //I'm not sure that this is used
 				containingDiv2.style.height = "500px";
 				containingDiv2.style.width = "1200px";
 				containingDiv2.style.border =  "1px solid #ccc";
                 containingDiv2.style.overflow = "scroll"; 
+                
+                //create preWorkoutDiv
+                var preWorkoutDiv = document.createElement('div');
+				preWorkoutDiv.id = "preWorkoutDiv";  //I'm not sure that this is used
+				preWorkoutDiv.innerHTML = "<a style=\"color: black; font-size: 110%; font-weight: bold;\">"
+					+ "Pre-Workout Snack" + "</a>" + "<br />";	
+				preWorkoutDiv.style.height = "100px";
+				preWorkoutDiv.style.width = "1200px";
+				preWorkoutDiv.style.border =  "1px solid #ccc";
+                preWorkoutDiv.style.overflow = "scroll"; 
+                
+                //create breakfastDiv
+                var breakfastDiv = document.createElement('div');
+				breakfastDiv.id = "breakfastDiv";  //I'm not sure that this is used
+				breakfastDiv.innerHTML = "<a style=\"color: black; font-size: 110%; font-weight: bold;\">"
+					+ "Breakfast" + "</a>" + "<br />";	
+				breakfastDiv.style.height = "100px";
+				breakfastDiv.style.width = "1200px";
+				breakfastDiv.style.border =  "1px solid #ccc";
+                breakfastDiv.style.overflow = "scroll"; 
+                
+                //create aMSnackDiv
+                var aMSnackDiv = document.createElement('div');
+				aMSnackDiv.id = "aMSnackDiv";  //I'm not sure that this is used
+				aMSnackDiv.innerHTML = "<a style=\"color: black; font-size: 110%; font-weight: bold;\">"
+					+ "Morning Snack" + "</a>" + "<br />";	
+				aMSnackDiv.style.height = "100px";
+				aMSnackDiv.style.width = "1200px";
+				aMSnackDiv.style.border =  "1px solid #ccc";
+                aMSnackDiv.style.overflow = "scroll"; 
+ 
+                //create lunchDiv
+                var lunchDiv = document.createElement('div');
+				lunchDiv.id = "lunchDiv";  //I'm not sure that this is used
+				lunchDiv.innerHTML = "<a style=\"color: black; font-size: 110%; font-weight: bold;\">"
+					+ "Lunch" + "</a>" + "<br />";	
+				lunchDiv.style.height = "100px";
+				lunchDiv.style.width = "1200px";
+				lunchDiv.style.border =  "1px solid #ccc";
+                lunchDiv.style.overflow = "scroll";      
+                
+                //create preDinnerSnackDiv
+                var preDinnerSnackDiv = document.createElement('div');
+				preDinnerSnackDiv.id = "preDinnerSnackDiv";  //I'm not sure that this is used
+				preDinnerSnackDiv.innerHTML = "<a style=\"color: black; font-size: 110%; font-weight: bold;\">"
+					+ "Pre-Dinner Snack" + "</a>" + "<br />";	
+				preDinnerSnackDiv.style.height = "100px";
+				preDinnerSnackDiv.style.width = "1200px";
+				preDinnerSnackDiv.style.border =  "1px solid #ccc";
+                preDinnerSnackDiv.style.overflow = "scroll";        
+                
+                 //create dinnerDiv
+                var dinnerDiv = document.createElement('div');
+				dinnerDiv.id = "dinnerDiv";  //I'm not sure that this is used
+				dinnerDiv.innerHTML = "<a style=\"color: black; font-size: 110%; font-weight: bold;\">"
+					+ "Dinner Snack" + "</a>" + "<br />";	
+				dinnerDiv.style.height = "100px";
+				dinnerDiv.style.width = "1200px";
+				dinnerDiv.style.border =  "1px solid #ccc";
+                dinnerDiv.style.overflow = "scroll";      
+                
+                //create pmSnackDiv
+                var pmSnackDiv = document.createElement('div');
+				pmSnackDiv.id = "pmSnackDiv";  //I'm not sure that this is used
+				pmSnackDiv.innerHTML = "<a style=\"color: black; font-size: 110%; font-weight: bold;\">"
+					+ "After-Dinner Snack" + "</a>" + "<br />";				
+				pmSnackDiv.style.height = "100px";
+				pmSnackDiv.style.width = "1200px";
+				pmSnackDiv.style.border =  "1px solid #ccc";
+                pmSnackDiv.style.overflow = "scroll";    
+                
 				
 				for (var i = 0; i < det5.length; i++) {
 					var quickListDiv = document.createElement('div');
-					quickListDiv.id = "quickListDiv" + 1; 
+					quickListDiv.id = "quickListDiv" + 1; //I'm not sure that this is used
 					
 					quickListDiv.itemname = det5[i].itemname; 
+					quickListDiv.baseQuantity = det5[i].baseQuantity; 
+					quickListDiv.whichMeal = det5[i].category; 
 					quickListDiv.baseunitofmeasure = det5[i].baseunitofmeasure;
 					quickListDiv.calories = det5[i].calories;
 					
-					//set innerHTML
+					//each quickListDiv represents a single quicklist item
 					quickListDiv.innerHTML = 
 						"<a style=\"color: grey; font-size: 85%; font-style: italic;\">"
 										 + quickListDiv.itemname 
@@ -301,9 +389,40 @@ function fetchQuickListFromDB(){
 										 + "&nbsp;" + "&nbsp;"
 										 + quickListDiv.calories 
 										 + "<br />";
-
-					containingDiv2.appendChild(quickListDiv);
-					document.body.appendChild(containingDiv2);
+										 
+					switch (quickListDiv.whichMeal) {
+					    case 0:
+					        preWorkoutDiv.appendChild(quickListDiv);
+					        break;
+					    case 1:
+					        breakfastDiv.appendChild(quickListDiv);
+					        break;
+					    case 2:
+					        aMSnackDiv.appendChild(quickListDiv);
+					        break;
+					    case 3:
+					        lunchDiv.appendChild(quickListDiv);
+					        break;
+					    case 4:
+					        preDinnerSnackDiv.appendChild(quickListDiv);
+					        break;
+					    case 5:
+					        dinnerDiv.appendChild(quickListDiv);
+					        break;
+					    case 6:
+					        pmSnackDiv.appendChild(quickListDiv);
+					        break;
+					}		
+					
+					//add each meal time's div to the containing div
+					containingDiv2.appendChild(preWorkoutDiv);
+					containingDiv2.appendChild(breakfastDiv);
+					containingDiv2.appendChild(aMSnackDiv);
+					containingDiv2.appendChild(lunchDiv);
+					containingDiv2.appendChild(preDinnerSnackDiv);
+					containingDiv2.appendChild(dinnerDiv);
+					containingDiv2.appendChild(pmSnackDiv);
+					document.body.appendChild(containingDiv2);	 
 
 				}
 

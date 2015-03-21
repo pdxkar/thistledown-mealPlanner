@@ -95,6 +95,7 @@ public class BooksController {
 	public void addComponent(
 		//Component stuff		
 		@RequestParam(value = "itemName", required = false) String itemName,
+		@RequestParam(value = "category", required = false) Integer category,
 		@RequestParam(value = "baseQuantity", required = false) Integer baseQuantity,
 		@RequestParam(value = "baseUnitOfMeasure", required = false) String baseUnitOfMeasure,
 		@RequestParam(value = "calories", required = false) Integer calories,
@@ -102,7 +103,7 @@ public class BooksController {
 		
 		System.out.println("BooksController POST /data/addComponent");  
 	
-		jdbcComponentDao.addComponent(itemName, baseQuantity, baseUnitOfMeasure, calories, isFavorite);
+		jdbcComponentDao.addComponent(itemName, category, baseQuantity, baseUnitOfMeasure, calories, isFavorite);
 
 	}
 	

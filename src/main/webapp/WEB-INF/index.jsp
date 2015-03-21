@@ -110,7 +110,7 @@ function showValues(ndbno) {
                 	+ itemname + "</a>" + "</b>";
                 document.body.appendChild(nameDiv);  
                 
-                //Display the calories calculated from the servings (x) measurement 
+                //Display the calories calculated from the servings times the measurement 
                 var calculatedCalories = document.createElement('input');
                 calculatedCalories.type = "text";
                 calculatedCalories.id = "totalCalBox"; 
@@ -157,7 +157,7 @@ function showValues(ndbno) {
 	           	//i has to be global so gram and ounce can be added to the list
 	           	var i;
 	            
-	            //for each measurement of the selected food item	            
+	            //for each measurement of the selected food item, create an option in the selectbox            
 	            for (i = 0; i < det2.report.food.nutrients[1].measures.length; i++) 
 	            {
 	            	//THESE ARE THE ONLY FOUR THINGS AVAILABLE AT THIS URL
@@ -267,18 +267,66 @@ function showValues(ndbno) {
 				//add some line breaks
 				//THERE HAS GOT TO BE A BETTER WAY TO DO THIS :(
 				var spacer3 = document.createElement('a');
-                spacer.innerHTML = "<br><br>";
+                spacer3.innerHTML = "<br><br>";
                 document.body.appendChild(spacer3); 
+                
+                //create a dropdown list for the user to pick which meal the item goes into
+                //label the dropdown
+				var mealBoxLabel = document.createElement('a');
+                mealBoxLabel.innerHTML = "<br>Which meal should this be saved to? ";
+                document.body.appendChild(mealBoxLabel); 
+				
+				var mealNameSelectElement = document.createElement ("select");
+	            mealNameSelectElement.id = "mealNameSelectBox";
+				
+				var quickListMeals = [
+				    {"mealId": 0, "mealName":"Pre-Workout Snack"}, 
+				    {"mealId": 1, "mealName":"Breakfast"},
+				    {"mealId": 2, "mealName":"Morning Snack"},
+				    {"mealId": 3, "mealName":"Lunch"},
+				    {"mealId": 4, "mealName":"Afternoon Snack"},
+				    {"mealId": 5, "mealName":"Dinner"},
+				    {"mealId": 6, "mealName":"After-Dinner Snack"},
+				];
+				
+				//j has to be global so the selection can be seen
+				var j;
+				var mealPosition;
+				var mealEnteredByUser;
+				
+				//for each measurement of the selected food item, create an option in the selectbox            
+	            for (j = 0; j < quickListMeals.length; j++) 
+	            {
+					//grab the number equivalent of the meal
+	            	mealPosition = quickListMeals.mealId;  
+
+               		//create an option in the dropdown list that corresponds to each meal
+             		var option = new Option (quickListMeals[j]); 
+             		option.text = quickListMeals[j].mealName;
+             		option.value = quickListMeals[j].mealId;
+             		mealNameSelectElement.options[mealNameSelectElement.options.length] = option;
+	            }
+				document.body.appendChild (mealNameSelectElement); 
+				
 			
 				//create button that can save selected measurement to the db
 				var inputElement = document.createElement('input');
 				inputElement.type = "button";
 				inputElement.value = "Save Selection to My QuickList";
 				inputElement.addEventListener('click', function(){
-					saveSelectionToDatabase(itemname, 0, 1, baseUnitOfMeasure, caloriesOfSelectedMeasurement, true);
+
+					var e2 = document.getElementById("mealNameSelectBox");
+	             	mealEnteredByUser = e2.options[e2.selectedIndex].value;
+					saveSelectionToDatabase(itemname, mealEnteredByUser, 1, baseUnitOfMeasure, caloriesOfSelectedMeasurement, true);
 	
-					});
+				});
 				document.body.appendChild(inputElement);
+				
+				//add some line breaks
+				//THERE HAS GOT TO BE A BETTER WAY TO DO THIS :(
+				var spacer4 = document.createElement('a');
+                spacer4.innerHTML = "<br><br>";
+                document.body.appendChild(spacer4); 
 				
 				//create button to display contents of quicklist
 				var inputElement = document.createElement('input');
@@ -457,7 +505,8 @@ function fetchQuickListFromDB(){
 										 + "&nbsp;" + "&nbsp;"
 										 + quickListDiv.calories 
 										 + "<br />";
-										 
+					
+					//figure out which meal slot to put the quickList Item					 
 					switch (quickListDiv.whichMeal) {
 					    case 0:
 					        preWorkoutDiv.appendChild(quickListDiv);

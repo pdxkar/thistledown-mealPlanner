@@ -44,7 +44,7 @@ public class Component {
 	private int category;
 	private float basequantity;
 	private String baseunitofmeasure;
-	private int calories;
+	private Double calories;
 	//*****we're pretending that "carbs" are actually "gram equivalents just until we can re-work the db
 	private float carbs;
 	private int protein;
@@ -102,11 +102,11 @@ public class Component {
 		this.baseunitofmeasure = baseunitofmeasure;
 	}
 
-	public int getCalories() {
+	public Double getCalories() {
 		return calories;
 	}
 
-	public void setCalories(int calories) {
+	public void setCalories(Double calories) {
 		this.calories = calories;
 	}
 

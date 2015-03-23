@@ -30,7 +30,7 @@ public class ComponentRowMapper implements RowMapper<Component> {
 		component.setCategory(rs.getInt("CATEGORY"));
 		component.setBasequantity(rs.getFloat("BASEQUANTITY"));
 		component.setBaseunitofmeasure(rs.getString("BASEUNITOFMEASURE"));
-		component.setCalories(rs.getInt("CALORIES"));
+		component.setCalories(rs.getDouble("CALORIES"));
 		component.setCarbs(rs.getInt("CARBS"));
 		component.setProtein(rs.getInt("PROTEIN"));
 		component.setFiber(rs.getInt("FIBER"));

@@ -1,179 +1,68 @@
-@import
-	url("http://fonts.googleapis.com/css?family=Raleway:400,700,900,800");
+@CHARSET "ISO-8859-1";
 
-@import url("http://fonts.googleapis.com/css?family=Scada:700");
-
-.dasLink {
-	height: 180px;
-}
-
-html,body {
-	margin: 0;
-	padding: 0;
-	height: 100%;
+body {
+    /* background-color: #DEE7FF; */
+    background-color: rgba(224, 224, 209, 0.2);
 }
 
 
+h1 { 
+	color: #2C2E33; 
+}
 
-#backToList {
+div {
+    border: 1px solid black;
+    width: 1200px;
+}
+
+#lineItemDiv {
+	border: 1px solid red;
+	width: 1200px;
+	 height: 40px; 
+}
+
+.quickListContainerDiv {
+	border: 5px solid DeepPink;
+	/* 				containingDiv2.style.height = "500px";
+				containingDiv2.style.width = "1200px";
+				containingDiv2.style.border =  "1px solid #ccc";
+                containingDiv2.style.overflow = "scroll";  */
+}
+
+.userQuickListQtyBox {
+	width: 50px;
 	display: block;
+	float: left;
 }
 
-.smallerText {
-	font-size: medium;
+.quickListDiv {
+	width: 600px;
+	border: 1px solid blue;
+  	display: block;
+	float: left;  
 }
 
-#bottomBooksCover {
-text-align: center;
+.mealTimeDiv {
+/* 	height: 100px; */
+	width: 1200px;
+	border: 5px solid BlueViolet;
 }
 
-.bookCover {
-	margin: auto;
+.mealTotalCalBox {
+	border: 4px solid green;
+    width: 100px;
 }
 
-td {
-	font-family: sans-serif;
+.baseMeasureBox {
+	border: 4px solid blue;
+    width: 75px;
+    display: block;
+	float: left;
 }
 
-#browseHeader {
-	margin-top: 0px;
-}
-
-#container {
-	min-height: 100%;
-	position: relative;
-}
-
-#header {
-	padding: 10px;
-	height: 30px;
-}
-
-#body {
-	padding: 10px;
-	padding-top: 45px;
-	padding-bottom: 60px; /* Height of the footer */
-}
-
-#footer {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 40px;
-	background: #6cf;
-	display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#copyRight {
-	text-align: center;
-	font-family: sans-serif;
-	font-weight: 400;
-}
-
-ul {
-	text-align: center;
-}
-
-#browsePageAuthors {
-	text-align: left;
-}
-
-.browseBookDetail {
-	color: black;
-	font-size: small;
-}
-
-#aboutBooksInfo,.aboutBooksTechnology {
-	text-align: left;
-}
-
-.browseBookTitle {
-	font-family: sans-serif;
-	font-weight: 700;
-	font-size: 15px;
-	color: black;
-}
-
-th {
-	font-family: sans-serif;
-	font-weight: 700;
-	font-size: 20px;
-	color: black;
-}
-
-#browseHomeTable .isbnLink:hover {
-	cursor: pointer;
-}
-
-#makers,#informationTitle {
-	text-align: center;
-}
-
-#makers {
-	padding-bottom: 10px;
-}
-
-#homeHeaderLink {
-	font-size: 30px;
-	font-weight: 800;
-	margin-top: 10px;
-	padding-left: 0px;
-	padding-right: 0px;
-}
-
-.footerNavLinks,.navLinks {
-	font-weight: 600;
-}
-
-#informationTitle,.makers {
-	font-size: large;
-}
-
-/* #detailsCover, #detailsInfo{ */
-/* 	display: inline; */
-/* } */
-h4,h3,h2 {
-	text-align: center;
-}
-
-#bottomBooksAmount{
-	text-align: center;
-}
-
-.homeLink{
-margin-left: auto;
-    margin-right: auto;
-}
-
-.footerLinks{
-	text-align: center;
-}
-
-/* .booksFootHomeLink, .booksAboutLink,.booksAboutFootLink */
-/* { */
-/* 	display:block; */
-/* 	margin-left: auto; */
-/* 	margin-right: auto; */
-/* } */
-
-.publisher
-{
-	text-align: center;
-}
-
-.bordered{
-padding: 5px;
-	border-radius: 10px;
-	text-align: center;
-}
-
-.bordered:hover {
-background-color: #e4e4e4;
-
-}
-
-.bordered:hover > h4{
-font-size: x-large;
+.itemCalcCalTextBox {
+	border: 4px solid orange;
+    width: 75px;
+/*      display: block;
+	float:left; */ 
 }

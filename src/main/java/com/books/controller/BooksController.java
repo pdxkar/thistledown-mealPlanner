@@ -98,7 +98,7 @@ public class BooksController {
 		@RequestParam(value = "category", required = false) Integer category,
 		@RequestParam(value = "baseQuantity", required = false) Integer baseQuantity,
 		@RequestParam(value = "baseUnitOfMeasure", required = false) String baseUnitOfMeasure,
-		@RequestParam(value = "calories", required = false) Integer calories,
+		@RequestParam(value = "calories", required = false) Double calories,
 		@RequestParam(value = "isFavorite", required = false) Boolean isFavorite) {
 		
 		System.out.println("BooksController POST /data/addComponent");  

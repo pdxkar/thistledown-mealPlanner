@@ -18,7 +18,7 @@ public interface ComponentDao {
 		
 		public List<Component> getQuickList(Boolean isFavorite);
 		
-		public void addComponent(final String itemName, final Integer category, final Integer baseQuantity, final String baseUnitOfMeasure, final Integer calories, final Boolean isFavorite);
+		public void addComponent(final String itemName, final Integer category, final Integer baseQuantity, final String baseUnitOfMeasure, final Double calories, final Boolean isFavorite);
 
 }
 

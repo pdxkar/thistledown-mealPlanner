@@ -38,7 +38,7 @@ public class JdbcComponentDao extends JdbcDaoSupport implements ComponentDao {
 		return getJdbcTemplate().query(Component.GET_QUICK_LIST, new ComponentRowMapper(),  new Object[]{isFavorite}); 
 	}
 
-	public void addComponent(final String itemName, final Integer category, final Integer baseQuantity, final String baseUnitOfMeasure, final Integer calories, final Boolean isFavorite){
+	public void addComponent(final String itemName, final Integer category, final Integer baseQuantity, final String baseUnitOfMeasure, final Double calories, final Boolean isFavorite){
 
 			MapSqlParameterSource componentMap = new MapSqlParameterSource();
 			

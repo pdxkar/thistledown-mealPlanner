@@ -38,14 +38,42 @@ public class Component {
 			+ " ,:ISFAVORITE"
 			+ ")";
 	
+	//"UPDATE Registration " +
+   // "SET age = 30 WHERE id in (100, 101)";
+	
+	public static final String UPDATE_COMPONENT = "UPDATE basecomponent "
+			+ " SET baseQuantity = :BASEQUANTITY "
+			+ " WHERE itemId = :ITEMID";
+	
+/*	public static final String UPDATE_COMPONENT = "UPDATE basecomponent "
+			+ " SET baseQuantity = 300 "
+			+ " WHERE itemId = 243";*/
+	
+/*	public static final String UPDATE_COMPONENT = "UPDATE basecomponent ("		
+			+ " itemName"
+			+ ", category"			
+			+ ", baseQuantity"
+			+ ", baseUnitOfMeasure"
+			+ ", calories"
+			+ ", isFavorite"
+			+ ") VALUES ("
+			+ "  :ITEMNAME"
+			+ " ,:CATEGORY"			
+			+ " ,:BASEQUANTITY"			
+			+ " ,:BASEUNITOFMEASURE"
+			+ " ,:CALORIES"
+			+ " ,:ISFAVORITE"
+			+ ")"
+			+ " WHERE itemId = '240'";*/
+	
 	//private variables
 	private int itemid; 
 	private String itemname;
 	private int category;
-	private float basequantity;
+	private Double basequantity;
 	private String baseunitofmeasure;
 	private Double calories;
-	//*****we're pretending that "carbs" are actually "gram equivalents just until we can re-work the db
+	//*****let's pretend that "carbs" are actually "gram equivalents just until we can re-work the db?
 	private float carbs;
 	private int protein;
 	private float fiber;
@@ -86,11 +114,11 @@ public class Component {
 		this.category = category;
 	}
 
-	public float getBasequantity() {
+	public Double getBasequantity() {
 		return basequantity;
 	}
 
-	public void setBasequantity(float basequantity) {
+	public void setBasequantity(Double basequantity) {
 		this.basequantity = basequantity;
 	}
 

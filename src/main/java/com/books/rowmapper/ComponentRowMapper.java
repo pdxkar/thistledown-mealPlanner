@@ -28,7 +28,7 @@ public class ComponentRowMapper implements RowMapper<Component> {
 		component.setItemid(rs.getInt("ITEMID"));
 		component.setItemname(rs.getString("ITEMNAME"));	
 		component.setCategory(rs.getInt("CATEGORY"));
-		component.setBasequantity(rs.getFloat("BASEQUANTITY"));
+		component.setBasequantity(rs.getDouble("BASEQUANTITY"));
 		component.setBaseunitofmeasure(rs.getString("BASEUNITOFMEASURE"));
 		component.setCalories(rs.getDouble("CALORIES"));
 		component.setCarbs(rs.getInt("CARBS"));

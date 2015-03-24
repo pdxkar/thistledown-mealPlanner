@@ -24,4 +24,12 @@ public class ShellController {
 		//return "shell";
 		return "index";
 	}
+	
+/*	@RequestMapping("/*")
+	public String putRootShell() {
+		System.out.println("ShellController PUT /");
+		//shell = webapp/WEB-INF/shell.jsp
+		//return "shell";
+		return "index";
+	}*/
 }

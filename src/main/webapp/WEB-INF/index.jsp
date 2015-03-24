@@ -19,7 +19,7 @@ function init() {
 function Search(){
 
 var keywrod = document.getElementById("keyword").value; 
-var url2 = "http://api.nal.usda.gov/usda/ndb/search/?format=json&q=" + keywrod + "&sort=n&max=250&offset=0&api_key=a0C0r0iDT31VwSIDjDXChPXkDLpkGBQoSOSDDall";
+var url2 = "http://api.nal.usda.gov/usda/ndb/search/?format=json&q=" + keywrod + "&sort=n&max=1000&offset=0&api_key=a0C0r0iDT31VwSIDjDXChPXkDLpkGBQoSOSDDall";
 
 	xmlhttp.open('GET', url2, true);
 	xmlhttp.send(null);
@@ -460,7 +460,17 @@ function fetchQuickListFromDB(){
  					recalculateQuickListItemCalories(i);					
 				}); 
 				containingDiv2.appendChild(calcQuickListTotalButton); 
-                
+				
+				
+				//Button to persist the user's changes to the quicklist to the database
+				var calcQuickListTotalButton = document.createElement('input');
+				calcQuickListTotalButton.type = "button";
+				calcQuickListTotalButton.value = "Save Changes to Quicklist";
+ 				calcQuickListTotalButton.addEventListener('click', function(){ 				
+ 					persistUsersChangesToQuicklist(i, det5);					
+				}); 
+				containingDiv2.appendChild(calcQuickListTotalButton); 
+
                 //preWorkoutDiv
                 var preWorkoutDiv = document.createElement('div');
                 preWorkoutDiv.className = "mealTimeDiv";
@@ -506,7 +516,6 @@ function fetchQuickListFromDB(){
 					+ "Morning Snack" + "</a>" + "&nbsp; &nbsp; &nbsp;";	
 				
 				//AM Snack Total textbox
-                //same as preworkouttotal textbox
                 var totalAMSnackCalBox = document.createElement('input'); //this is probably not really input since it's display only
                 totalAMSnackCalBox.type = "text";
                 totalAMSnackCalBox.className = "mealTotalCalBox";
@@ -568,7 +577,7 @@ function fetchQuickListFromDB(){
                 //create pmSnackDiv
                 var pmSnackDiv = document.createElement('div');
                 pmSnackDiv.className = "mealTimeDiv";
-				pmSnackDiv.id = "pmSnackDiv";  //I'm not sure that this is used
+				pmSnackDiv.id = "pmSnackDiv";  
 				pmSnackDiv.innerHTML = "<a style=\"color: black; font-size: 110%; font-weight: bold;\">"
 					+ "After-Dinner Snack" + "</a>" + "&nbsp; &nbsp; &nbsp;";				
 				
@@ -611,7 +620,7 @@ function fetchQuickListFromDB(){
 					userQuickListQtyTextBox.type = "text";
 					userQuickListQtyTextBox.className = "userQuickListQtyBox";
 					userQuickListQtyTextBox.id = "userQuickListQtyBox" + i;
-                	userQuickListQtyTextBox.value = 0;
+                	userQuickListQtyTextBox.value = det5[i].basequantity;
                 	
                 	//BASE MEASURE textbox (i.e. ounces/grams/cup)
 					var itemBaseMeasureTextBox = document.createElement('input');
@@ -647,7 +656,7 @@ function fetchQuickListFromDB(){
 					itemCalcCalTextBox.type = "text";
 					itemCalcCalTextBox.className = "itemCalcCalTextBox";
 					itemCalcCalTextBox.id = "itemCalcCalTextBox" + i;
-                	itemCalcCalTextBox.value = quickListDiv.calories * userQuickListQtyTextBox.value; 
+                	itemCalcCalTextBox.value = Math.round(quickListDiv.calories * userQuickListQtyTextBox.value); 
                 	
                 	lineItemDiv.appendChild(userQuickListQtyTextBox);
 					lineItemDiv.appendChild(itemBaseMeasureTextBox);	
@@ -801,6 +810,87 @@ function recalculateQuickListItemCalories(numberOfFoodItems){
 	}
 	
 }
+
+function persistUsersChangesToQuicklist(numberOfFoodItems, theOriginalArrayFromMyDB){
+	//for as many food items that are on the quicklist, do this loop.
+	for(var p = 0; p < numberOfFoodItems; p++){
+		//alert("itemid = " + theOriginalArrayFromMyDB[p].itemid);
+		//alert("qty = " + document.getElementById("userQuickListQtyBox" + m).value);
+		
+		if(theOriginalArrayFromMyDB[p].basequantity != document.getElementById("userQuickListQtyBox" + p).value){
+			//alert("found a difference! " + theOriginalArrayFromMyDB[p].itemid + " was changed!");
+			
+			//PUT the changed base quantities into the DB
+			
+			var itemId = theOriginalArrayFromMyDB[p].itemid;
+			var newBaseQuantity = document.getElementById("userQuickListQtyBox" + p).value;
+			
+		var http = new XMLHttpRequest();
+		//url pattern example: http://localhost:8080/mealPlanner/data/updateComponent/243?itemId=243&baseQuantity=77777
+		var urlUpdateComponent = "http://localhost:8080/mealPlanner/data/updateComponent/" + itemId + "?itemId=" + itemId + "&baseQuantity=" + newBaseQuantity;
+		
+		var params = "itemId=" + itemId 
+				   + "&baseQuantity=" + newBaseQuantity;
+	
+	http.open("PUT", urlUpdateComponent, true);
+	
+		//Send the proper header information along with the request
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.setRequestHeader("Content-length", params.length);
+	http.setRequestHeader("Connection", "close");
+	
+	http.onreadystatechange = function() {    //Call a function when the state changes.
+	    if(http.readyState == 4 && http.status == 200) {
+	        alert(http.responseText);
+	    }
+	};
+	http.send(params); 
+
+}
+			
+	//		function saveSelectionToDatabase(itemName, category, baseQuantity, baseUnitOfMeasure, caloriesOfSelectedMeasurement, isFavorite) {
+	/*var http = new XMLHttpRequest();
+	var urlAddComponent = "http://localhost:8080/mealPlanner/data/addComponent";
+	
+	var params = "itemName=" + itemName 
+				+ "&category=" + category 
+				+ "&baseQuantity=" + baseQuantity 
+				+ "&baseUnitOfMeasure=" + baseUnitOfMeasure 
+				+ "&calories=" + caloriesOfSelectedMeasurement
+				+ "&isFavorite=" + isFavorite;
+	
+	http.open("POST", urlAddComponent, true);
+	
+	//Send the proper header information along with the request
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.setRequestHeader("Content-length", params.length);
+	http.setRequestHeader("Connection", "close");
+	
+	http.onreadystatechange = function() {    //Call a function when the state changes.
+	    if(http.readyState == 4 && http.status == 200) {
+	        alert(http.responseText);
+	    }
+	};
+	http.send(params); 
+
+}  
+			
+			
+			 */
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
+	}
+	//alert("groovy!");
+//}
 
 </script> 
 </head>

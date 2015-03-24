@@ -10,6 +10,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -104,6 +106,27 @@ public class BooksController {
 		System.out.println("BooksController POST /data/addComponent");  
 	
 		jdbcComponentDao.addComponent(itemName, category, baseQuantity, baseUnitOfMeasure, calories, isFavorite);
+
+	}
+	
+	/**
+	 * Update a baseComponent's baseMeasurement in the database
+	 */	
+	// call this service with URL http://localhost:8080/mealPlanner/data/updateComponent} <= can use this with POSTMAN's 
+	// Params: URL Parameter Key and Value: itemId 243, baseQuantity 777
+	// ex of calling service directly: http://localhost:8080/mealPlanner/data/updateComponent/243?itemId=243&baseQuantity=77777
+
+	@RequestMapping(value = "/updateComponent/{itemId}", method = RequestMethod.PUT)
+//	@RequestMapping(value = "/updateComponent", method = RequestMethod.PUT)
+	@ResponseBody
+	public void updateComponent(
+			@PathVariable Integer itemId
+		  , @RequestParam  Double baseQuantity
+		  ) {	
+		
+	System.out.println("BooksController PUT /data/updateComponent");  	
+		
+	jdbcComponentDao.updateComponent(itemId, baseQuantity);
 
 	}
 	

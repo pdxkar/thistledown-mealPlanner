@@ -60,6 +60,19 @@ public class JdbcComponentDao extends JdbcDaoSupport implements ComponentDao {
 			
 	}
 	
+	public void updateComponent(final Integer itemId, final Double baseQuantity){
+		MapSqlParameterSource componentMap = new MapSqlParameterSource();
+		
+		holderForComponentId = this.getHolderForUserId();
+		
+		//component stuff
+		componentMap.addValue("ITEMID", itemId);				
+		componentMap.addValue("BASEQUANTITY", baseQuantity);
+
+		namedJdbcTemplate.update(Component.UPDATE_COMPONENT, componentMap);
+		
+}
+	
 	/**
 	 * 
 	 * gets a generatedkeyholder - if there is no keyholder, it makes a new one

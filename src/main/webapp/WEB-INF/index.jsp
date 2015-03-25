@@ -745,13 +745,15 @@ function fetchQuickListFromDB(){
 }
 
 function recalculateQuickListItemCalories(numberOfFoodItems){
+	//first zero out the total calories so you can recalculate
+	document.getElementById("totalCalQuicklistBox").value = 0;
 	//for every QuickList item
 	for(var m = 0; m < numberOfFoodItems; m++){
 		
 		//multiply the user-entered amount times the calories of the base amount
 		var userEnteredItemQty = document.getElementById("userQuickListQtyBox" + m).value;
 		var baseCaloriesOfItem = document.getElementById("quickListDiv" + m).calories;
-		var totCalOfItem = userEnteredItemQty * baseCaloriesOfItem;
+		var totCalOfItem = Math.round(userEnteredItemQty * baseCaloriesOfItem);
 		//var totCalOfQuickList = document.getElementById("totalCalQuicklistBox").value;
 		
 		//set the value of the item total box to this calculation

@@ -745,8 +745,16 @@ function fetchQuickListFromDB(){
 }
 
 function recalculateQuickListItemCalories(numberOfFoodItems){
-	//first zero out the total calories so you can recalculate
+	//first zero out each of the total calorie boxes so you can recalculate fresh
 	document.getElementById("totalCalQuicklistBox").value = 0;
+	document.getElementById("totalCalpreWorkoutBox").value = 0;
+	document.getElementById("totalCalBreakfastBox").value = 0;
+	document.getElementById("totalCalAMSnackBox").value = 0;
+	document.getElementById("totalCalLunchBox").value = 0;
+	document.getElementById("totalCalPreDinnerSnackBox").value = 0;
+	document.getElementById("totalCalDinnerBox").value = 0;
+	document.getElementById("totalPMSnackBox").value = 0;
+
 	//for every QuickList item
 	for(var m = 0; m < numberOfFoodItems; m++){
 		
